@@ -12,7 +12,7 @@
     "study_date": null,
     "contrast": "non_contrast",
     "slice_thickness_mm": null,
-    "technique_notes": "Both frames share window, crop, table position, body contour, and non-contrast appearance, so they are read as two levels of one acquisition rather than two studies. No burned-in annotation, callipers, scale bar, or HU ROI on either frame, so nothing here is quantitatively anchored. Bulky soft tissue at both lateral field margins is consistent with shoulder girdle / proximal arms within the scan field."
+    "technique_notes": "Two levels of one acquisition, confirmed by the user. No burned-in annotation, callipers, scale bar, or HU ROI on either frame, so nothing here is quantitatively anchored. Bulky soft tissue at both lateral field margins is consistent with shoulder girdle / proximal arms within the scan field."
   },
   "frames": [
     {
@@ -42,10 +42,18 @@
     "Non-contrast. Mediastinal and hilar nodes cannot be distinguished from unopacified vessels, and no vascular assessment (embolism, dissection, aneurysm) is possible.",
     "No DICOM metadata. Contrast phase, window, and slice levels are inferred from appearance; slice thickness and study date are unknown.",
     "No burned-in callipers, scale bar, or HU ROI, so no size or attenuation value is recorded — any measurement here would be an estimate, not data.",
-    "The two frames are assumed to belong to one acquisition on visual grounds, not on metadata. If they are in fact separate studies, this record merges two studies and must be split.",
+    "Single acquisition, confirmed by the user. There is no prior and no follow-up in the base, so nothing here establishes whether any of this is new, stable, or changing.",
     "A negative read at two levels is not a normal study."
   ],
   "compare_to": [],
-  "tags": ["baseline", "chest", "upper-thorax", "carina", "non-contrast", "soft-tissue-window", "no-discrete-finding"],
+  "tags": [
+    "baseline",
+    "chest",
+    "upper-thorax",
+    "carina",
+    "non-contrast",
+    "soft-tissue-window",
+    "no-discrete-finding"
+  ],
   "notes": "First case in the base. Serves as a normal-appearing reference for the upper thorax and carinal levels. Image pixels not attached for either frame — both screenshots arrived as conversation attachments rather than files. Drop them into inbox/ to attach and set each frame's image to images/CASE-0001-<frame-id>.png."
 }
