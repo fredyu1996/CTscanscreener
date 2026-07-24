@@ -77,6 +77,29 @@ Homogeneous opacification obscuring vessel margins, often with air bronchograms.
 **Discriminators** — lobar and sharply marginated at a fissure vs patchy and multifocal.
 **Cases:** _(none yet)_
 
+### Bilateral dependent basal opacity with internal lucencies
+Clustered nodular and short branching opacities with intervening air-density lucencies,
+posterior and dependent, both lower lobes, often asymmetric.
+**Discriminators** — the internal lucencies rule out vasculature and rule out simple
+dependent atelectasis, neither of which contains air spaces. Beyond that, soft-tissue
+window cannot separate the real contenders, and they are separated by *distribution and
+history*, not by density:
+- **Aspiration / bronchopneumonia** — dependent posterior segments, right more than left
+  because the right main bronchus is more vertical. Needs a history of aspiration risk.
+- **Bronchiectasis with mucus plugging** — bilateral basal is the classic distribution;
+  the call rests on airway calibre exceeding the accompanying artery, which is a
+  lung-window judgement.
+- **Tree-in-bud bronchiolitis, including mycobacterial disease** — centrilobular
+  clustered nodules sparing the pleural surface. Explicitly a lung-window diagnosis;
+  it cannot be confirmed or excluded on soft tissue.
+- **Fibrosis** — basal, but usually subpleural and reasonably symmetric; marked
+  asymmetry argues against.
+
+Basal frames are also the most vulnerable to **partial volume averaging with the
+diaphragm**, which raises apparent density and can overstate extent at the most caudal
+level. It never explains internal lucencies or nodular clustering.
+**Cases:** CASE-0001 (bilateral, right greater than left)
+
 ### Pleural effusion
 Dependent fluid-density collection layering posteriorly on supine axial imaging.
 **Discriminators** — HU near water = simple; higher HU, loculation, or enhancing pleura

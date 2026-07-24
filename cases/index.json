@@ -44,9 +44,16 @@
           "plane": "axial",
           "window": "soft_tissue",
           "slice_level": "Lower thorax approaching the lung bases, approximately T8-T9. Heart occupies the central mediastinum; both lower lobes broadly in view."
+        },
+        {
+          "id": "lower-basal-soft-tissue",
+          "image": null,
+          "plane": "axial",
+          "window": "soft_tissue",
+          "slice_level": "Lung bases approaching the diaphragm, approximately T9-T10. Lung cross-sections reducing; central soft tissue is heart with diaphragm and upper abdominal contents beginning to enter the field."
         }
       ],
-      "impression": "Five contiguous axial levels of an unenhanced chest CT on soft-tissue window, descending from the upper thorax to the lung bases. The upper three levels are unremarkable. The lower two demonstrate an extensive heterogeneous abnormality of the right lower lobe: irregular opacity containing multiple small rounded and tubular air-density lucencies, on a background of coarse reticular and branching lines, extending from the perihilar region laterally and posteriorly. The corresponding left lower lobe territory is comparatively spared, and this asymmetry is now clear rather than marginal. This supersedes the frame 4 read, where the same process was visible only as a nodular cluster and was attributed to crowded normal vasculature: the internal air-density lucencies seen at this level are not a vascular finding. The abnormality is definitely present; its nature is not settled by these frames. Bronchiectasis with mucus plugging and consolidation with air bronchograms are the leading considerations, with fibrotic change less likely given the asymmetry. Elsewhere the lungs are aerated with no pneumothorax and no large pleural collection at the levels imaged. Airway patent and midline throughout. Heart occupies the central mediastinum without a discrete mass; chamber size and pericardium are not assessable unenhanced. Bones intact throughout. This warrants review of the actual study on a lung window rather than any conclusion from these screenshots.",
+      "impression": "Six contiguous axial levels of an unenhanced chest CT on soft-tissue window, descending from the upper thorax to the lung bases. The upper three levels are unremarkable. The lower three demonstrate a bilateral basal parenchymal process, right greater than left, with posterior and dependent predominance. On the right there is extensive heterogeneous opacity containing multiple small rounded and tubular air-density lucencies on a background of coarse reticular and branching lines. On the left, evident on the most caudal frame, there are clustered small nodular and short branching opacities of similar character but lesser extent, with the anterior left lung well aerated. The left-sided involvement was not apparent one level cranial, so the process is either more caudal on the left or was under-called there; these frames cannot distinguish those. The abnormality is definitely present and is not vascular — vessels do not contain air-density lucencies. Its nature is not settled here: bronchiectasis with mucus plugging, aspiration or bronchopneumonia, and chronic infection with bronchiolitis are all live considerations, with fibrotic change less likely given the asymmetry. No pneumothorax and no large pleural collection at the levels imaged; airway patent and midline throughout; bones intact. This is a significant bilateral finding that warrants review of the actual study on a lung window, with clinical context, rather than any conclusion drawn from screenshots.",
       "confidence": "moderate",
       "tags": [
         "chest",
@@ -58,7 +65,9 @@
         "non-contrast",
         "soft-tissue-window",
         "multi-level",
+        "bilateral-basal-process",
         "rll-abnormality",
+        "lll-abnormality",
         "needs-lung-window",
         "revised-read"
       ],
@@ -68,6 +77,14 @@
           "organ": "lung",
           "laterality": "right",
           "location": "right lower lobe, extending from the perihilar region laterally and posteriorly",
+          "size_mm": null,
+          "significance": "significant"
+        },
+        {
+          "id": "lll-nodular-opacity",
+          "organ": "lung",
+          "laterality": "left",
+          "location": "left lower lobe, posterior and dependent",
           "size_mm": null,
           "significance": "significant"
         }
