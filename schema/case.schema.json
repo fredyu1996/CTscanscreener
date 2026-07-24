@@ -1,0 +1,198 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/fredyu1996/CTscanscreener/schema/case.schema.json",
+  "title": "CT Case Record",
+  "description": "One CT study (or one screenshot of a study) described in structured form.",
+  "type": "object",
+  "required": ["case_id", "added", "study", "findings", "impression", "confidence"],
+  "additionalProperties": false,
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "pattern": "^CASE-[0-9]{4}$",
+      "description": "Stable identifier, e.g. CASE-0007."
+    },
+    "added": {
+      "type": "string",
+      "format": "date",
+      "description": "Date this record entered the base (YYYY-MM-DD)."
+    },
+    "source_image": {
+      "type": ["string", "null"],
+      "description": "Repo-relative path to the screenshot this record describes."
+    },
+    "patient": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Pseudonymous patient context. Never store real identifiers.",
+      "properties": {
+        "id": {
+          "type": ["string", "null"],
+          "description": "Pseudonym linking studies of the same patient, e.g. PT-A."
+        },
+        "age": { "type": ["integer", "null"], "minimum": 0, "maximum": 130 },
+        "sex": { "type": ["string", "null"], "enum": ["M", "F", "other", "unknown", null] },
+        "clinical_context": {
+          "type": ["string", "null"],
+          "description": "Indication, known history, relevant labs — whatever was supplied."
+        }
+      }
+    },
+    "study": {
+      "type": "object",
+      "required": ["region"],
+      "additionalProperties": false,
+      "properties": {
+        "region": {
+          "type": "string",
+          "enum": [
+            "head", "neck", "chest", "cardiac", "abdomen", "pelvis",
+            "abdomen_pelvis", "spine", "musculoskeletal", "extremity",
+            "whole_body", "other"
+          ]
+        },
+        "study_date": { "type": ["string", "null"], "format": "date" },
+        "plane": {
+          "type": ["string", "null"],
+          "enum": ["axial", "coronal", "sagittal", "oblique", "3d_reconstruction", "scout", null]
+        },
+        "contrast": {
+          "type": ["string", "null"],
+          "enum": [
+            "non_contrast", "arterial", "portal_venous", "delayed", "nephrographic",
+            "excretory", "cta", "ctv", "oral_only", "unknown", null
+          ]
+        },
+        "window": {
+          "type": ["string", "null"],
+          "enum": ["soft_tissue", "lung", "bone", "brain", "liver", "mediastinal", "stroke", "unknown", null]
+        },
+        "slice_thickness_mm": { "type": ["number", "null"], "exclusiveMinimum": 0 },
+        "slice_level": {
+          "type": ["string", "null"],
+          "description": "Anatomic level of the frame, e.g. 'carina', 'L2 vertebral body'."
+        },
+        "technique_notes": { "type": ["string", "null"] }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "description": "Discrete observations. An empty array means an unremarkable read.",
+      "items": { "$ref": "#/definitions/finding" }
+    },
+    "impression": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Plain-language synthesis of what the frame shows."
+    },
+    "differential": {
+      "type": "array",
+      "description": "Candidate explanations, most likely first.",
+      "items": {
+        "type": "object",
+        "required": ["entity"],
+        "additionalProperties": false,
+        "properties": {
+          "entity": { "type": "string" },
+          "supporting": { "type": "array", "items": { "type": "string" } },
+          "against": { "type": "array", "items": { "type": "string" } },
+          "likelihood": { "type": "string", "enum": ["high", "moderate", "low"] }
+        }
+      }
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["high", "moderate", "low"],
+      "description": "How much weight this read can carry given image quality and context."
+    },
+    "limitations": {
+      "type": "array",
+      "description": "What this record cannot establish — single frame, no priors, unknown window, etc.",
+      "items": { "type": "string" }
+    },
+    "compare_to": {
+      "type": "array",
+      "description": "Case IDs this study has been formally compared against.",
+      "items": { "type": "string", "pattern": "^CASE-[0-9]{4}$" }
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Free-form labels for retrieval, e.g. 'ground-glass', 'follow-up'."
+    },
+    "notes": { "type": ["string", "null"] }
+  },
+  "definitions": {
+    "finding": {
+      "type": "object",
+      "required": ["id", "organ", "description"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Short slug stable across studies of the same patient, e.g. 'liver-seg7-lesion'. This is what comparison matches on."
+        },
+        "organ": {
+          "type": "string",
+          "description": "Anatomic structure: liver, lung, kidney, aorta, vertebra, ..."
+        },
+        "laterality": {
+          "type": ["string", "null"],
+          "enum": ["left", "right", "bilateral", "midline", "n/a", null]
+        },
+        "location": {
+          "type": ["string", "null"],
+          "description": "Segment / lobe / level, e.g. 'segment VII', 'RLL posterior basal'."
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "What is actually seen, in descriptive terms."
+        },
+        "size_mm": {
+          "type": ["array", "null"],
+          "description": "Measured axes in mm, longest first. 1-3 values.",
+          "items": { "type": "number", "exclusiveMinimum": 0 },
+          "minItems": 1,
+          "maxItems": 3
+        },
+        "attenuation_hu": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "description": "Density in Hounsfield units, where readable.",
+          "properties": {
+            "value": { "type": ["number", "null"] },
+            "min": { "type": ["number", "null"] },
+            "max": { "type": ["number", "null"] },
+            "qualitative": {
+              "type": ["string", "null"],
+              "enum": ["hypodense", "isodense", "hyperdense", "fat", "fluid", "soft_tissue", "calcific", "gas", "metal", null]
+            }
+          }
+        },
+        "margins": {
+          "type": ["string", "null"],
+          "enum": ["well_defined", "ill_defined", "lobulated", "spiculated", "infiltrative", "smooth", null]
+        },
+        "enhancement": {
+          "type": ["string", "null"],
+          "enum": ["none", "homogeneous", "heterogeneous", "rim", "peripheral_nodular", "washout", "avid", "hypovascular", "not_assessable", null]
+        },
+        "morphology": {
+          "type": "array",
+          "description": "Descriptors: cystic, solid, ground_glass, cavitary, calcified, necrotic, ...",
+          "items": { "type": "string" }
+        },
+        "significance": {
+          "type": ["string", "null"],
+          "enum": ["critical", "significant", "incidental", "benign", "indeterminate", null],
+          "description": "Weight of the finding. 'critical' = would need urgent attention if real."
+        },
+        "certainty": {
+          "type": ["string", "null"],
+          "enum": ["definite", "probable", "possible", "questionable", null]
+        }
+      }
+    }
+  }
+}

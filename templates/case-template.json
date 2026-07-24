@@ -1,0 +1,52 @@
+{
+  "case_id": "CASE-0000",
+  "added": "YYYY-MM-DD",
+  "source_image": "images/CASE-0000.png",
+  "patient": {
+    "id": null,
+    "age": null,
+    "sex": null,
+    "clinical_context": null
+  },
+  "study": {
+    "region": "abdomen",
+    "study_date": null,
+    "plane": "axial",
+    "contrast": "unknown",
+    "window": "soft_tissue",
+    "slice_thickness_mm": null,
+    "slice_level": null,
+    "technique_notes": null
+  },
+  "findings": [
+    {
+      "id": "short-stable-slug",
+      "organ": "",
+      "laterality": null,
+      "location": null,
+      "description": "",
+      "size_mm": null,
+      "attenuation_hu": {
+        "value": null,
+        "min": null,
+        "max": null,
+        "qualitative": null
+      },
+      "margins": null,
+      "enhancement": null,
+      "morphology": [],
+      "significance": null,
+      "certainty": null
+    }
+  ],
+  "impression": "",
+  "differential": [],
+  "confidence": "low",
+  "limitations": [
+    "Single screenshot frame — no full-volume review.",
+    "No DICOM metadata; window and contrast phase inferred from appearance."
+  ],
+  "compare_to": [],
+  "tags": [],
+  "notes": null
+}

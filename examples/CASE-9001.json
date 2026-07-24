@@ -1,0 +1,84 @@
+{
+  "case_id": "CASE-9001",
+  "added": "2026-07-24",
+  "source_image": null,
+  "patient": {
+    "id": "PT-DEMO",
+    "age": 58,
+    "sex": "F",
+    "clinical_context": "SYNTHETIC EXAMPLE — no real patient. Illustrates the baseline study of a follow-up pair."
+  },
+  "study": {
+    "region": "abdomen",
+    "study_date": "2026-01-12",
+    "plane": "axial",
+    "contrast": "portal_venous",
+    "window": "soft_tissue",
+    "slice_thickness_mm": 5,
+    "slice_level": "porta hepatis",
+    "technique_notes": "Fabricated record used to demonstrate the schema and the compare command."
+  },
+  "findings": [
+    {
+      "id": "liver-seg7-lesion",
+      "organ": "liver",
+      "laterality": "right",
+      "location": "segment VII",
+      "description": "Rounded hypodense lesion with mildly lobulated margins and a thin peripheral rim of enhancement.",
+      "size_mm": [22, 19, 18],
+      "attenuation_hu": {
+        "value": 38,
+        "min": null,
+        "max": null,
+        "qualitative": "hypodense"
+      },
+      "margins": "lobulated",
+      "enhancement": "rim",
+      "morphology": ["solid", "rim-enhancing"],
+      "significance": "indeterminate",
+      "certainty": "definite"
+    },
+    {
+      "id": "liver-seg2-cyst",
+      "organ": "liver",
+      "laterality": "left",
+      "location": "segment II",
+      "description": "Well-defined water-density lesion with imperceptible wall and no internal complexity.",
+      "size_mm": [9],
+      "attenuation_hu": {
+        "value": 6,
+        "min": null,
+        "max": null,
+        "qualitative": "fluid"
+      },
+      "margins": "well_defined",
+      "enhancement": "none",
+      "morphology": ["cystic"],
+      "significance": "benign",
+      "certainty": "probable"
+    }
+  ],
+  "impression": "Two hepatic lesions: an indeterminate rim-enhancing segment VII lesion and a small simple-appearing segment II cyst.",
+  "differential": [
+    {
+      "entity": "Metastasis",
+      "supporting": ["Rim enhancement", "Lobulated margins", "Soft-tissue attenuation"],
+      "against": ["Solitary", "No known primary given"],
+      "likelihood": "moderate"
+    },
+    {
+      "entity": "Abscess",
+      "supporting": ["Rim enhancement"],
+      "against": ["No clinical infective context supplied"],
+      "likelihood": "low"
+    }
+  ],
+  "confidence": "low",
+  "limitations": [
+    "Synthetic record — not derived from a real study.",
+    "Single frame, single contrast phase; enhancement pattern cannot be fully characterised."
+  ],
+  "compare_to": [],
+  "tags": ["example", "synthetic", "baseline", "hepatic-lesion"],
+  "notes": "Demonstration data. Pair with CASE-9002 to see the compare output."
+}

@@ -1,0 +1,9 @@
+# Generated deck
+deck.html
+
+# Uncomment to keep scan pixels out of git entirely (case records still work).
+# images/
+
+__pycache__/
+*.pyc
+.DS_Store
