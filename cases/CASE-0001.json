@@ -71,6 +71,82 @@
       "slice_level": "Lower thorax, approximately T7-T9, comparable to the heart-level and lung-base soft-tissue frames.",
       "read_after_report": true,
       "notes": "First and only lung-window frame in this study. Supplied after the official report, so it documents what the reported findings look like rather than testing the read — this frame cannot contribute to concordance scoring and nothing first seen on it is scored as concordant. On it the lung fields are diffusely grey rather than black, which is itself the finding: extensive ground-glass. Denser confluent consolidation posteromedially in both lower lobes, right more than left, containing dark branching and rounded air bronchograms. Bronchial walls thickened around the central airways. An anteroposterior gradient is evident, anterior lung better aerated and posterior dependent lung denser, on top of a perihilar predominance. No discrete peripheral nodule identified on this frame, which is expected: the reported nodules are upper lobe predominant and this level is lower thoracic. Pixels not attached."
+    },
+    {
+      "id": "image-83-lung-window",
+      "image": null,
+      "plane": "axial",
+      "window": "lung",
+      "slice_level": "Upper thorax, upper lobes. Trachea seen centrally as a single rounded lucency, so this is above the carina. Corresponds to report image 83.",
+      "read_after_report": true,
+      "annotations": [
+        {
+          "id": "lul-search-zone",
+          "label": "LUL subpleural — reported nodule zone",
+          "x": 0.7,
+          "y": 0.46,
+          "r": 0.115,
+          "kind": "search_zone",
+          "note": "Outer third of the left upper lobe. The report localises the 9 mm nodule to the left upper lobe and describes the nodules as peripheral, which puts it in this subpleural band. The report gives no quadrant."
+        },
+        {
+          "id": "lul-candidate-anterolateral",
+          "label": "candidate A — anterolateral",
+          "x": 0.735,
+          "y": 0.415,
+          "r": 0.038,
+          "kind": "candidate",
+          "note": "Rounded density in the anterolateral subpleural left upper lobe. Cannot be separated from a vessel seen end-on with confidence at this resolution."
+        },
+        {
+          "id": "lul-candidate-posterolateral",
+          "label": "candidate B — posterolateral",
+          "x": 0.725,
+          "y": 0.545,
+          "r": 0.038,
+          "kind": "candidate",
+          "note": "Rounded density posterolaterally, sitting on a background of confluent ground-glass, which reduces conspicuity."
+        }
+      ],
+      "notes": "Eighth frame. Supplied after the official report, at the level the report cites for the left upper lobe nodule. Both lungs show diffuse ground-glass and reticular change, denser posteriorly, consistent with the reported edema. I could not confidently identify which density is the reported 9 mm nodule; candidates are marked as candidates, not as the finding. Pixels not attached."
+    },
+    {
+      "id": "image-96-lung-window",
+      "image": null,
+      "plane": "axial",
+      "window": "lung",
+      "slice_level": "Upper-mid thorax at the carina or just below, paired central bronchial lucencies visible. Corresponds to report image 96.",
+      "read_after_report": true,
+      "annotations": [
+        {
+          "id": "rul-search-zone",
+          "label": "RUL subpleural — reported nodule zone",
+          "x": 0.3,
+          "y": 0.47,
+          "r": 0.115,
+          "kind": "search_zone",
+          "note": "Outer third of the right upper lobe, posterior segment territory at this level. The report localises the 9 mm nodule to the right upper lobe without a quadrant."
+        },
+        {
+          "id": "rul-candidate-posterolateral",
+          "label": "candidate A — posterolateral",
+          "x": 0.275,
+          "y": 0.555,
+          "r": 0.038,
+          "kind": "candidate",
+          "note": "Rounded density in the posterolateral subpleural right upper lobe, the most discrete focus I can identify in this zone."
+        },
+        {
+          "id": "rul-candidate-lateral",
+          "label": "candidate B — lateral",
+          "x": 0.255,
+          "y": 0.455,
+          "r": 0.038,
+          "kind": "candidate",
+          "note": "Second rounded density laterally. Less discrete than candidate A."
+        }
+      ],
+      "notes": "Ninth frame. Supplied after the official report, at the level the report cites for the right upper lobe nodule. Same diffuse ground-glass and reticular background. As with image 83, I could not determine which density the radiologist measured; markers are candidates and a search zone, not identifications. Pixels not attached."
     }
   ],
   "findings": [
@@ -190,7 +266,10 @@
       ],
       "significance": "significant",
       "certainty": "definite",
-      "seen_on": [],
+      "seen_on": [
+        "image-83-lung-window",
+        "image-96-lung-window"
+      ],
       "source": "official_report",
       "concordance": "missed"
     },
@@ -199,7 +278,7 @@
       "organ": "lung",
       "laterality": "left",
       "location": "left upper lobe (report image 83)",
-      "description": "9 mm left upper lobe nodule, cited in the official report as an example of the peripheral nodules. Size is the reported measurement from the full study, not a screenshot estimate.",
+      "description": "9 mm left upper lobe nodule, cited in the official report as an example of the peripheral nodules. Size is the reported measurement from the full study, not a screenshot estimate. The frame is now in the record. On it I can localise the reported nodule only to the subpleural outer third of the left upper lobe; two rounded densities in that zone are marked as candidates, and I cannot determine which the radiologist measured.",
       "size_mm": [
         9
       ],
@@ -212,7 +291,9 @@
       ],
       "significance": "significant",
       "certainty": "definite",
-      "seen_on": [],
+      "seen_on": [
+        "image-83-lung-window"
+      ],
       "source": "official_report",
       "concordance": "missed"
     },
@@ -221,7 +302,7 @@
       "organ": "lung",
       "laterality": "right",
       "location": "right upper lobe (report image 96)",
-      "description": "9 mm right upper lobe nodule, cited in the official report as an example of the peripheral nodules. Size is the reported measurement from the full study, not a screenshot estimate.",
+      "description": "9 mm right upper lobe nodule, cited in the official report as an example of the peripheral nodules. Size is the reported measurement from the full study, not a screenshot estimate. The frame is now in the record. As with image 83, localisation is to the subpleural outer third of the right upper lobe with two marked candidates, not a specific identification.",
       "size_mm": [
         9
       ],
@@ -234,7 +315,9 @@
       ],
       "significance": "significant",
       "certainty": "definite",
-      "seen_on": [],
+      "seen_on": [
+        "image-96-lung-window"
+      ],
       "source": "official_report",
       "concordance": "missed"
     }

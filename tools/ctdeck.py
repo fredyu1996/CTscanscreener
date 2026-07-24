@@ -646,6 +646,30 @@ def cmd_concordance(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_annotate(args: argparse.Namespace) -> int:
+    import ctannotate
+
+    case = load_case(args.case_id)
+    frames = [f for f in case.get("frames", []) if f.get("annotations")]
+    if args.frame:
+        frames = [f for f in frames if f["id"] == args.frame]
+        if not frames:
+            raise SystemExit(f"{args.case_id} has no annotated frame {args.frame!r}")
+    if not frames:
+        raise SystemExit(f"{args.case_id} has no annotated frames. Add markers to a "
+                         f"frame's 'annotations' array first.")
+
+    out_dir = Path(args.out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    for frame in frames:
+        svg = ctannotate.render_frame(frame, case["case_id"], ROOT)
+        path = out_dir / f"{case['case_id']}-{frame['id']}-annotated.svg"
+        path.write_text(svg)
+        mode = "overlay" if frame.get("image") and (ROOT / frame["image"]).exists() else "SCHEMATIC"
+        print(f"{mode:>9}  {rel(path)}  ({len(frame['annotations'])} marker(s))")
+    return 0
+
+
 def cmd_validate(args: argparse.Namespace) -> int:
     schema = load_schema()
     paths = case_paths()
@@ -987,6 +1011,12 @@ def main(argv: Iterable[str] | None = None) -> int:
     p.add_argument("case_id")
     p.add_argument("--limit", type=int, default=5)
     p.set_defaults(func=cmd_similar)
+
+    p = sub.add_parser("annotate", help="render a frame's markers as an SVG")
+    p.add_argument("case_id")
+    p.add_argument("--frame", help="annotate only this frame id")
+    p.add_argument("--out-dir", default="annotated")
+    p.set_defaults(func=cmd_annotate)
 
     p = sub.add_parser("concordance", help="score screenshot reads against official reports")
     p.set_defaults(func=cmd_concordance)

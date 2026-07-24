@@ -88,6 +88,28 @@
             "type": ["boolean", "null"],
             "description": "True if this frame was supplied after the official report was known. Such a frame documents what the reported findings look like; it cannot test the screenshot read, and findings first seen on it must not be scored as concordant."
           },
+          "annotations": {
+            "type": "array",
+            "description": "Marked regions on this frame. Coordinates are fractions of image width/height (0-1), so they survive rescaling.",
+            "items": {
+              "type": "object",
+              "required": ["id", "label", "x", "y"],
+              "additionalProperties": false,
+              "properties": {
+                "id": { "type": "string" },
+                "label": { "type": "string", "description": "Short text drawn beside the marker." },
+                "x": { "type": "number", "minimum": 0, "maximum": 1 },
+                "y": { "type": "number", "minimum": 0, "maximum": 1 },
+                "r": { "type": ["number", "null"], "exclusiveMinimum": 0, "description": "Marker radius as a fraction of image width. Defaults to 0.05." },
+                "kind": {
+                  "type": ["string", "null"],
+                  "enum": ["confirmed", "candidate", "search_zone", null],
+                  "description": "'confirmed' = this is the thing. 'candidate' = one of several possibilities, drawn dashed. 'search_zone' = look here, no claim about what is there."
+                },
+                "note": { "type": ["string", "null"] }
+              }
+            }
+          },
           "notes": { "type": ["string", "null"] }
         }
       }

@@ -57,6 +57,9 @@ python3 tools/ctdeck.py similar CASE-0004
 # score screenshot reads against official reports — what was missed, what was misread
 python3 tools/ctdeck.py concordance
 
+# draw a frame's markers as an SVG (overlays the real image when it is on disk)
+python3 tools/ctdeck.py annotate CASE-0001 --out-dir annotated
+
 # validate every record against the schema
 python3 tools/ctdeck.py validate
 
@@ -81,6 +84,7 @@ No dependencies beyond the Python 3.9+ standard library.
 | `templates/` | Blank case template + the analysis checklist I work through |
 | `reference/` | Accumulated cross-case knowledge: HU values, patterns, terminology |
 | `tools/ctdeck.py` | CLI for indexing, validating, comparing, and rendering |
+| `tools/ctannotate.py` | SVG marker rendering used by `ctdeck.py annotate` |
 
 ## What a case record captures
 

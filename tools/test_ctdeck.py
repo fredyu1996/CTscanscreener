@@ -316,6 +316,26 @@ class TestOfficialReport(unittest.TestCase):
                              "source": "official_report", "concordance": "missed"}]
         self.assertEqual(ctdeck.validate_against(case, self.schema, self.schema), [])
 
+    def test_annotations_accepted(self):
+        case = self._case()
+        case["frames"] = [{"id": "f", "annotations": [
+            {"id": "n1", "label": "nodule", "x": 0.7, "y": 0.4, "r": 0.04,
+             "kind": "candidate", "note": "maybe"}]}]
+        self.assertEqual(ctdeck.validate_against(case, self.schema, self.schema), [])
+
+    def test_annotation_coordinates_must_be_fractional(self):
+        case = self._case()
+        case["frames"] = [{"id": "f", "annotations": [
+            {"id": "n1", "label": "nodule", "x": 350, "y": 0.4}]}]
+        self.assertTrue(ctdeck.validate_against(case, self.schema, self.schema),
+                        "pixel coordinates should be rejected; x/y are fractions")
+
+    def test_annotation_kind_enum_enforced(self):
+        case = self._case()
+        case["frames"] = [{"id": "f", "annotations": [
+            {"id": "n1", "label": "n", "x": 0.5, "y": 0.5, "kind": "probably"}]}]
+        self.assertTrue(ctdeck.validate_against(case, self.schema, self.schema))
+
     def test_read_after_report_flag_accepted(self):
         case = self._case()
         case["frames"] = [{"id": "lw", "window": "lung", "read_after_report": True}]

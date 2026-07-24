@@ -58,6 +58,20 @@
           "plane": "axial",
           "window": "lung",
           "slice_level": "Lower thorax, approximately T7-T9, comparable to the heart-level and lung-base soft-tissue frames."
+        },
+        {
+          "id": "image-83-lung-window",
+          "image": null,
+          "plane": "axial",
+          "window": "lung",
+          "slice_level": "Upper thorax, upper lobes. Trachea seen centrally as a single rounded lucency, so this is above the carina. Corresponds to report image 83."
+        },
+        {
+          "id": "image-96-lung-window",
+          "image": null,
+          "plane": "axial",
+          "window": "lung",
+          "slice_level": "Upper-mid thorax at the carina or just below, paired central bronchial lucencies visible. Corresponds to report image 96."
         }
       ],
       "impression": "Pulmonary edema — diffuse interlobular septal thickening, peribronchial wall thickening, and perihilar ground-glass and consolidation — with a second, separate process superimposed: multiple bilateral peripheral nodules with slight upper lobe predominance, explicitly not typical for edema, including a 9 mm left upper lobe nodule and a 9 mm right upper lobe nodule. Suspicion of a ground-glass halo around several of the nodules, possibly exaggerated by motion artefact. No cavitary lesion. This impression follows the official report, which supersedes the screenshot-derived read recorded across the six supplied frames. That read identified the septal thickening, the peribronchial changes, and the perihilar opacity but attributed all three to airway disease — bronchiectasis, aspiration, and bronchiolitis — and did not reach edema. It also called the three upper-thorax frames unremarkable and missed the nodules entirely. See official_report.read_delta for the full account of what held up and what did not.",
