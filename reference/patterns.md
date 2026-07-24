@@ -41,9 +41,22 @@ or tree-in-bud.
 traced across adjacent slices; true nodules do not. Neither test is available on a
 single frame, and none of it is separable on a soft-tissue window. Asymmetry against the
 contralateral lobe is suggestive but weak on its own — the lobes are not mirror images
-and the slice rarely cuts both at equivalent levels. **The resolution is a lung window
-through the same level, not more staring at the soft-tissue frame.**
-**Cases:** CASE-0001 (right lower lobe, open at `possible` certainty)
+and the slice rarely cuts both at equivalent levels. The strongest discriminator that
+*is* available on soft-tissue window: **air-density lucencies inside the opacity**.
+Vessels do not contain air. Internal lucencies mean airways, cysts, or aerated lung
+within a process, and take the appearance out of the vascular differential entirely.
+**Cases:** CASE-0001
+
+**What this case taught (worth more than the entry above).** On CASE-0001 frame 4 this
+appearance was called probable crowded vasculature at `possible` certainty. One level
+caudal, frame 5 showed the same process with obvious internal lucencies and far greater
+extent — it was never vascular. The conservative read was wrong, and what corrected it
+was **one more slice in the same direction**, not more scrutiny of the original frame.
+
+When an asymmetric basal opacity is equivocal on soft-tissue window, the cheapest next
+move is the adjacent caudal slice. A vascular cluster thins and reconnects to the hilum;
+a real process gets larger and more structured. Log the equivocal read at low certainty
+so it stays visible until something settles it, and expect to revise it.
 
 ### Solid pulmonary nodule
 Round soft-tissue density within aerated lung. What matters for the record: size

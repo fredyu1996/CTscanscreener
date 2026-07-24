@@ -37,30 +37,39 @@
           "plane": "axial",
           "window": "soft_tissue",
           "slice_level": "Lower thorax at heart level, approximately T7-T8. Heart occupies most of the mediastinum; bronchus intermedius and left lower lobe bronchus visible as paired lucencies."
+        },
+        {
+          "id": "lung-base-soft-tissue",
+          "image": null,
+          "plane": "axial",
+          "window": "soft_tissue",
+          "slice_level": "Lower thorax approaching the lung bases, approximately T8-T9. Heart occupies the central mediastinum; both lower lobes broadly in view."
         }
       ],
-      "impression": "Four contiguous axial levels of an unenhanced chest CT — upper thorax, carina, main bronchi, and heart level — on soft-tissue window. The upper three levels are unremarkable, as previously recorded. On the lowest frame the lower lobes come substantially into view for the first time, and the posteromedial right lower lobe shows a cluster of small rounded and short branching opacities that is more crowded than the corresponding left-sided region. The leading explanation is crowded normal lower-lobe vasculature, which is exactly what this window and this level produce; the asymmetry is the only feature arguing otherwise, and it is not enough on its own. This cannot be resolved on a soft-tissue window — distinguishing vessels from small nodules or tree-in-bud needs a lung window through the same level. Elsewhere the lungs are well aerated and extend to the chest wall, with no consolidation, mass, or pneumothorax. Subtle dependent grey posteriorly in both lungs is within the range of normal supine dependent change and is not recorded as a finding. Airway patent and midline throughout. The heart occupies most of the mediastinum at the lowest level with no discrete mass; chamber size and pericardium are not assessable on an unenhanced single axial frame. Bones intact throughout, with no fracture or lytic or sclerotic lesion.",
+      "impression": "Five contiguous axial levels of an unenhanced chest CT on soft-tissue window, descending from the upper thorax to the lung bases. The upper three levels are unremarkable. The lower two demonstrate an extensive heterogeneous abnormality of the right lower lobe: irregular opacity containing multiple small rounded and tubular air-density lucencies, on a background of coarse reticular and branching lines, extending from the perihilar region laterally and posteriorly. The corresponding left lower lobe territory is comparatively spared, and this asymmetry is now clear rather than marginal. This supersedes the frame 4 read, where the same process was visible only as a nodular cluster and was attributed to crowded normal vasculature: the internal air-density lucencies seen at this level are not a vascular finding. The abnormality is definitely present; its nature is not settled by these frames. Bronchiectasis with mucus plugging and consolidation with air bronchograms are the leading considerations, with fibrotic change less likely given the asymmetry. Elsewhere the lungs are aerated with no pneumothorax and no large pleural collection at the levels imaged. Airway patent and midline throughout. Heart occupies the central mediastinum without a discrete mass; chamber size and pericardium are not assessable unenhanced. Bones intact throughout. This warrants review of the actual study on a lung window rather than any conclusion from these screenshots.",
       "confidence": "moderate",
       "tags": [
-        "baseline",
         "chest",
         "upper-thorax",
         "carina",
         "main-bronchi",
         "heart-level",
+        "lung-base",
         "non-contrast",
         "soft-tissue-window",
         "multi-level",
-        "needs-lung-window"
+        "rll-abnormality",
+        "needs-lung-window",
+        "revised-read"
       ],
       "findings": [
         {
-          "id": "rll-posteromedial-opacity",
+          "id": "rll-heterogeneous-opacity",
           "organ": "lung",
           "laterality": "right",
-          "location": "right lower lobe, posteromedial",
+          "location": "right lower lobe, extending from the perihilar region laterally and posteriorly",
           "size_mm": null,
-          "significance": "indeterminate"
+          "significance": "significant"
         }
       ]
     }

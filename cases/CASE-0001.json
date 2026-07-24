@@ -12,7 +12,7 @@
     "study_date": null,
     "contrast": "non_contrast",
     "slice_thickness_mm": null,
-    "technique_notes": "Four levels of one acquisition, confirmed by the user. No burned-in annotation, callipers, scale bar, or HU ROI on any frame, so nothing here is quantitatively anchored. Bulky soft tissue at both lateral field margins is consistent with shoulder girdle / proximal arms within the scan field."
+    "technique_notes": "Five levels of one acquisition, confirmed by the user. No burned-in annotation, callipers, scale bar, or HU ROI on any frame, so nothing here is quantitatively anchored. Bulky soft tissue at both lateral field margins is consistent with shoulder girdle / proximal arms within the scan field."
   },
   "frames": [
     {
@@ -46,80 +46,117 @@
       "window": "soft_tissue",
       "slice_level": "Lower thorax at heart level, approximately T7-T8. Heart occupies most of the mediastinum; bronchus intermedius and left lower lobe bronchus visible as paired lucencies.",
       "notes": "Fourth frame supplied, caudal to the main-bronchi frame. First frame in this study on which the lower lobes are substantially in view. Pixels not attached."
+    },
+    {
+      "id": "lung-base-soft-tissue",
+      "image": null,
+      "plane": "axial",
+      "window": "soft_tissue",
+      "slice_level": "Lower thorax approaching the lung bases, approximately T8-T9. Heart occupies the central mediastinum; both lower lobes broadly in view.",
+      "notes": "Fifth frame supplied, caudal to the heart-level frame. This frame resolves the question left open on frame 4: the right lower lobe abnormality is extensive and structural, not crowded vasculature. Pixels not attached."
     }
   ],
   "findings": [
     {
-      "id": "rll-posteromedial-opacity",
+      "id": "rll-heterogeneous-opacity",
       "organ": "lung",
       "laterality": "right",
-      "location": "right lower lobe, posteromedial",
-      "description": "Cluster of small rounded and short branching white opacities, visibly more crowded and more conspicuous than the mirror-image region of the left lower lobe. Margins indistinct. Not separable from crowded normal lower-lobe vasculature on a soft-tissue window; the asymmetry with the contralateral side is the only reason it is recorded at all.",
+      "location": "right lower lobe, extending from the perihilar region laterally and posteriorly",
+      "description": "Extensive heterogeneous abnormality occupying much of the right lower lobe: irregular soft-tissue-density opacity intermixed with multiple small rounded and tubular lucencies, on a background of coarse irregular reticular and branching lines. The internal lucencies are the discriminating feature — normal vasculature does not contain air-density spaces within it. Markedly asymmetric, with the corresponding left lower lobe territory comparatively spared. On frame 4, one level cranial, the same process was visible only as a nodular and branching cluster posteromedially and was recorded at 'possible' certainty as probable crowded vasculature; this frame supersedes that read.",
       "size_mm": null,
       "attenuation_hu": null,
       "margins": "ill_defined",
       "enhancement": "not_assessable",
       "morphology": [
+        "heterogeneous",
+        "reticular",
         "nodular",
+        "cystic-lucencies",
         "branching"
       ],
-      "significance": "indeterminate",
-      "certainty": "possible",
+      "significance": "significant",
+      "certainty": "definite",
       "seen_on": [
-        "heart-level-soft-tissue"
+        "heart-level-soft-tissue",
+        "lung-base-soft-tissue"
       ]
     }
   ],
-  "impression": "Four contiguous axial levels of an unenhanced chest CT — upper thorax, carina, main bronchi, and heart level — on soft-tissue window. The upper three levels are unremarkable, as previously recorded. On the lowest frame the lower lobes come substantially into view for the first time, and the posteromedial right lower lobe shows a cluster of small rounded and short branching opacities that is more crowded than the corresponding left-sided region. The leading explanation is crowded normal lower-lobe vasculature, which is exactly what this window and this level produce; the asymmetry is the only feature arguing otherwise, and it is not enough on its own. This cannot be resolved on a soft-tissue window — distinguishing vessels from small nodules or tree-in-bud needs a lung window through the same level. Elsewhere the lungs are well aerated and extend to the chest wall, with no consolidation, mass, or pneumothorax. Subtle dependent grey posteriorly in both lungs is within the range of normal supine dependent change and is not recorded as a finding. Airway patent and midline throughout. The heart occupies most of the mediastinum at the lowest level with no discrete mass; chamber size and pericardium are not assessable on an unenhanced single axial frame. Bones intact throughout, with no fracture or lytic or sclerotic lesion.",
+  "impression": "Five contiguous axial levels of an unenhanced chest CT on soft-tissue window, descending from the upper thorax to the lung bases. The upper three levels are unremarkable. The lower two demonstrate an extensive heterogeneous abnormality of the right lower lobe: irregular opacity containing multiple small rounded and tubular air-density lucencies, on a background of coarse reticular and branching lines, extending from the perihilar region laterally and posteriorly. The corresponding left lower lobe territory is comparatively spared, and this asymmetry is now clear rather than marginal. This supersedes the frame 4 read, where the same process was visible only as a nodular cluster and was attributed to crowded normal vasculature: the internal air-density lucencies seen at this level are not a vascular finding. The abnormality is definitely present; its nature is not settled by these frames. Bronchiectasis with mucus plugging and consolidation with air bronchograms are the leading considerations, with fibrotic change less likely given the asymmetry. Elsewhere the lungs are aerated with no pneumothorax and no large pleural collection at the levels imaged. Airway patent and midline throughout. Heart occupies the central mediastinum without a discrete mass; chamber size and pericardium are not assessable unenhanced. Bones intact throughout. This warrants review of the actual study on a lung window rather than any conclusion from these screenshots.",
   "differential": [
     {
-      "entity": "Crowded normal lower-lobe pulmonary vasculature",
+      "entity": "Bronchiectasis with mucus plugging, with or without chronic infection",
       "supporting": [
-        "Branching morphology continuous with the hilar vessels",
-        "Vascular conspicuity rises steadily across all four frames as the levels descend",
-        "Soft-tissue window renders vessels as bright white against black lung, exaggerating them"
+        "Tubular and rounded air-density lucencies within opacity, consistent with dilated airways",
+        "Coarse surrounding reticular change",
+        "Lower lobe predominance",
+        "Marked left-right asymmetry favours a localised airway process over a diffuse one"
       ],
       "against": [
-        "Asymmetric relative to the corresponding left lower lobe region"
+        "Airway calibre relative to the accompanying artery cannot be judged on this window",
+        "No clinical context supplied"
       ],
-      "likelihood": "high"
+      "likelihood": "moderate"
     },
     {
-      "entity": "Small nodules or tree-in-bud nodularity",
+      "entity": "Consolidation with air bronchograms (pneumonia or other airspace filling)",
       "supporting": [
-        "Rounded components within the cluster",
-        "Asymmetry"
+        "Heterogeneous opacity containing branching lucencies",
+        "Unilateral lower lobe distribution"
       ],
       "against": [
-        "Cannot be separated from vessels without a lung window",
-        "No clinical context supplied"
+        "The reticular and structural quality of the surrounding lung looks more chronic than acute airspace disease"
+      ],
+      "likelihood": "moderate"
+    },
+    {
+      "entity": "Fibrosis with traction bronchiectasis or honeycombing",
+      "supporting": [
+        "Coarse reticulation",
+        "Cystic spaces",
+        "Basal distribution"
+      ],
+      "against": [
+        "Fibrotic disease is usually more subpleural and more symmetric than this"
+      ],
+      "likelihood": "low"
+    },
+    {
+      "entity": "Crowded normal lower-lobe vasculature",
+      "supporting": [
+        "Was the leading explanation one level cranial on frame 4"
+      ],
+      "against": [
+        "Excluded on this frame: vessels do not contain internal air-density lucencies, and the extent and reticular background are not vascular"
       ],
       "likelihood": "low"
     }
   ],
   "confidence": "moderate",
   "limitations": [
-    "Four axial levels only. The lung bases below roughly T8, the costophrenic angles, and the upper abdomen were never seen — a basal effusion or basal consolidation would still sit below every frame supplied.",
-    "Soft-tissue window on all three frames. Pulmonary nodules, ground-glass, emphysema, and interstitial disease are effectively not assessable without a lung window; none of these frames excludes them. The prominent vascular markings at the hila are a window effect plus normal anatomy, not an assessment of the parenchyma.",
-    "The right lower lobe opacity is recorded at 'possible' certainty with no measurement. It may well be normal vasculature. It is in the record so a lung window or a follow-up study can settle it, not because it is believed to be disease.",
-    "Non-contrast. Mediastinal and hilar nodes cannot be distinguished from unopacified vessels, and no vascular assessment (embolism, dissection, aneurysm) is possible.",
+    "Five axial levels only. The costophrenic angles and upper abdomen were still never seen, and the full craniocaudal extent of the right lower lobe abnormality is therefore unknown — it may continue below the lowest frame supplied.",
+    "Soft-tissue window on all five frames. This is the central limitation for the finding that matters: distinguishing bronchiectasis from consolidation from honeycombing requires a lung window, and none of these frames can do it. Airway-to-artery calibre, the basis of a bronchiectasis call, is not judgeable here.",
+    "The right lower lobe abnormality is recorded as definitely present but uncharacterised. The differential is genuinely open; do not read the ordering as a conclusion.",
+    "Non-contrast. Mediastinal and hilar nodes cannot be distinguished from unopacified vessels, so nodal assessment accompanying this lung abnormality is impossible.",
+    "No clinical context supplied — no age, sex, symptoms, duration, or history. Acute infection and chronic airway disease look far more alike on one unenhanced frame than they do with a history attached.",
     "No DICOM metadata. Contrast phase, window, and slice levels are inferred from appearance; slice thickness and study date are unknown.",
-    "No burned-in callipers, scale bar, or HU ROI, so no size or attenuation value is recorded — any measurement here would be an estimate, not data.",
-    "Single acquisition, confirmed by the user. There is no prior and no follow-up in the base, so nothing here establishes whether any of this is new, stable, or changing.",
-    "A negative read at four levels is not a normal study. These frames sample a few centimetres of a volume that spans the whole chest."
+    "No burned-in callipers, scale bar, or HU ROI, so the extent of the abnormality is described but not measured.",
+    "Single acquisition, confirmed by the user. No prior and no follow-up in the base, so nothing establishes whether this is acute, chronic, or changing."
   ],
   "compare_to": [],
   "tags": [
-    "baseline",
     "chest",
     "upper-thorax",
     "carina",
     "main-bronchi",
     "heart-level",
+    "lung-base",
     "non-contrast",
     "soft-tissue-window",
     "multi-level",
-    "needs-lung-window"
+    "rll-abnormality",
+    "needs-lung-window",
+    "revised-read"
   ],
-  "notes": "First case in the base. Normal-appearing reference for the upper thorax, carinal, and main-bronchi levels; carries one open question at the heart level (right lower lobe posteromedial opacity, possible certainty). Image pixels not attached for any frame — all four screenshots arrived as conversation attachments rather than files. Drop them into inbox/ to attach and set each frame's image to images/CASE-0001-<frame-id>.png."
+  "notes": "First case in the base. Upper three levels are a normal-appearing thoracic reference; the lower two carry a significant right lower lobe abnormality. Finding was initially logged on frame 4 as 'rll-posteromedial-opacity' at possible certainty and attributed to crowded vasculature; frame 5 superseded that and the finding was renamed to 'rll-heterogeneous-opacity' and upgraded to definite. No comparison had been run against the old slug, so no comparison history was broken by the rename. Image pixels not attached for any frame — all five screenshots arrived as conversation attachments rather than files."
 }
