@@ -123,6 +123,21 @@
       "description": "What this record cannot establish — single frame, no priors, unknown window, etc.",
       "items": { "type": "string" }
     },
+    "official_report": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "description": "The reporting radiologist's findings, where supplied. This is ground truth for the case and outranks the screenshot-derived read everywhere they disagree.",
+      "required": ["text"],
+      "properties": {
+        "text": { "type": "string", "minLength": 1, "description": "The report findings as supplied, verbatim." },
+        "provided_by": { "type": ["string", "null"], "description": "Where it came from, e.g. 'user-supplied official report'." },
+        "date": { "type": ["string", "null"], "format": "date" },
+        "read_delta": {
+          "type": ["string", "null"],
+          "description": "Honest account of where the screenshot read agreed with, misattributed, or missed what the report describes."
+        }
+      }
+    },
     "compare_to": {
       "type": "array",
       "description": "Case IDs this study has been formally compared against.",
@@ -209,6 +224,16 @@
           "type": "array",
           "description": "Frame ids this finding was actually visible on. Absence from a frame that does not cut through the finding means nothing.",
           "items": { "type": "string" }
+        },
+        "source": {
+          "type": ["string", "null"],
+          "enum": ["screenshot_read", "official_report", "both", null],
+          "description": "Where this finding came from. Findings sourced from the official report may describe things no supplied frame shows."
+        },
+        "concordance": {
+          "type": ["string", "null"],
+          "enum": ["concordant", "recharacterised", "missed", "over_called", null],
+          "description": "How the screenshot read fared against the official report. 'recharacterised' means the feature was seen but attributed wrongly; 'missed' means it was not identified at all; 'over_called' means the screenshot read asserted something the report does not support."
         }
       }
     }

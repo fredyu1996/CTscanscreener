@@ -66,21 +66,18 @@
   ],
   "findings": [
     {
-      "id": "rll-heterogeneous-opacity",
+      "id": "interlobular-septal-thickening",
       "organ": "lung",
-      "laterality": "right",
-      "location": "right lower lobe, extending from the perihilar region laterally and posteriorly",
-      "description": "Extensive heterogeneous abnormality of the right lower lobe: irregular soft-tissue-density opacity intermixed with multiple small rounded and tubular air-density lucencies, on a background of coarse irregular reticular and branching lines, extending from the perihilar region laterally and posteriorly. The internal lucencies are the discriminating feature — normal vasculature does not contain air-density spaces within it. Most extensive on the two most caudal frames, with posterior and dependent predominance. On frame 4, one level cranial to where it first became convincing, the same process was visible only as a nodular and branching cluster posteromedially and was recorded at 'possible' certainty as probable crowded vasculature; that read has been superseded.",
+      "laterality": "bilateral",
+      "location": "diffuse",
+      "description": "Diffuse interlobular septal thickening. Seen on the screenshot frames as coarse irregular reticular and branching lines in both lower lobes and attributed there to a chronic fibrotic or airway background; the official report identifies it as septal thickening, a component of interstitial pulmonary edema.",
       "size_mm": null,
       "attenuation_hu": null,
-      "margins": "ill_defined",
+      "margins": null,
       "enhancement": "not_assessable",
       "morphology": [
-        "heterogeneous",
         "reticular",
-        "nodular",
-        "cystic-lucencies",
-        "branching"
+        "septal-thickening"
       ],
       "significance": "significant",
       "certainty": "definite",
@@ -88,124 +85,210 @@
         "heart-level-soft-tissue",
         "lung-base-soft-tissue",
         "lower-basal-soft-tissue"
-      ]
+      ],
+      "source": "both",
+      "concordance": "recharacterised"
     },
     {
-      "id": "lll-nodular-opacity",
+      "id": "peribronchial-wall-thickening",
       "organ": "lung",
-      "laterality": "left",
-      "location": "left lower lobe, posterior and dependent",
-      "description": "Clustered small nodular and short branching opacities with intervening lucencies in the posterior and dependent left lower lobe, similar in character to the right-sided process but less extensive, with the anterior left lung remaining well aerated. Not clearly abnormal one level cranial, where the left lower lobe territory was described as comparatively spared — whether that reflects a more caudal distribution on the left or an under-call on the frame above cannot be settled from these frames.",
+      "laterality": "bilateral",
+      "location": "diffuse",
+      "description": "Peribronchial wall thickening. Seen on the screenshot frames as small rounded and tubular air-density lucencies within opacity and read there as dilated airways, which put bronchiectasis at the head of the differential. They are cuffed normal bronchi, not dilated ones. This single misreading is the hinge on which the whole screenshot interpretation turned.",
+      "size_mm": null,
+      "attenuation_hu": null,
+      "margins": null,
+      "enhancement": "not_assessable",
+      "morphology": [
+        "peribronchial-cuffing",
+        "tubular-lucencies"
+      ],
+      "significance": "significant",
+      "certainty": "definite",
+      "seen_on": [
+        "heart-level-soft-tissue",
+        "lung-base-soft-tissue",
+        "lower-basal-soft-tissue"
+      ],
+      "source": "both",
+      "concordance": "recharacterised"
+    },
+    {
+      "id": "perihilar-ground-glass-consolidation",
+      "organ": "lung",
+      "laterality": "bilateral",
+      "location": "perihilar",
+      "description": "Perihilar ground-glass opacity and consolidation. The screenshot read described opacity 'extending from the perihilar region laterally and posteriorly' without recognising the perihilar distribution as the signature of edema, and could not identify ground-glass at all on a soft-tissue window.",
       "size_mm": null,
       "attenuation_hu": null,
       "margins": "ill_defined",
       "enhancement": "not_assessable",
       "morphology": [
-        "nodular",
-        "branching",
-        "clustered"
+        "ground-glass",
+        "consolidation"
       ],
       "significance": "significant",
-      "certainty": "probable",
+      "certainty": "definite",
       "seen_on": [
+        "heart-level-soft-tissue",
+        "lung-base-soft-tissue",
         "lower-basal-soft-tissue"
-      ]
+      ],
+      "source": "both",
+      "concordance": "recharacterised"
+    },
+    {
+      "id": "pulmonary-edema",
+      "organ": "lung",
+      "laterality": "bilateral",
+      "location": "diffuse, perihilar predominant",
+      "description": "Pulmonary edema, the unifying diagnosis for the septal thickening, peribronchial wall thickening, and perihilar ground-glass and consolidation above. Not reached by the screenshot read, which proposed bronchiectasis, aspiration or bronchopneumonia, and tree-in-bud bronchiolitis instead.",
+      "size_mm": null,
+      "attenuation_hu": null,
+      "margins": null,
+      "enhancement": "not_assessable",
+      "morphology": [
+        "edema"
+      ],
+      "significance": "significant",
+      "certainty": "definite",
+      "seen_on": [
+        "heart-level-soft-tissue",
+        "lung-base-soft-tissue",
+        "lower-basal-soft-tissue"
+      ],
+      "source": "official_report",
+      "concordance": "missed"
+    },
+    {
+      "id": "bilateral-peripheral-nodules",
+      "organ": "lung",
+      "laterality": "bilateral",
+      "location": "peripheral, both lungs, slight upper lobe predominance",
+      "description": "Multiple bilateral peripheral nodules with slight upper lobe predominance, explicitly noted as not typical in appearance for edema — a second process alongside it. Suspicion of a ground-glass halo around several, which the report cautions may be exaggerated by motion artefact. No cavitary lesion. Entirely missed by the screenshot read, which called the three upper-thorax frames unremarkable.",
+      "size_mm": null,
+      "attenuation_hu": null,
+      "margins": null,
+      "enhancement": "not_assessable",
+      "morphology": [
+        "nodular",
+        "peripheral",
+        "possible-halo"
+      ],
+      "significance": "significant",
+      "certainty": "definite",
+      "seen_on": [],
+      "source": "official_report",
+      "concordance": "missed"
+    },
+    {
+      "id": "lul-nodule-image83",
+      "organ": "lung",
+      "laterality": "left",
+      "location": "left upper lobe (report image 83)",
+      "description": "9 mm left upper lobe nodule, cited in the official report as an example of the peripheral nodules. Size is the reported measurement from the full study, not a screenshot estimate.",
+      "size_mm": [
+        9
+      ],
+      "attenuation_hu": null,
+      "margins": null,
+      "enhancement": "not_assessable",
+      "morphology": [
+        "nodular",
+        "peripheral"
+      ],
+      "significance": "significant",
+      "certainty": "definite",
+      "seen_on": [],
+      "source": "official_report",
+      "concordance": "missed"
+    },
+    {
+      "id": "rul-nodule-image96",
+      "organ": "lung",
+      "laterality": "right",
+      "location": "right upper lobe (report image 96)",
+      "description": "9 mm right upper lobe nodule, cited in the official report as an example of the peripheral nodules. Size is the reported measurement from the full study, not a screenshot estimate.",
+      "size_mm": [
+        9
+      ],
+      "attenuation_hu": null,
+      "margins": null,
+      "enhancement": "not_assessable",
+      "morphology": [
+        "nodular",
+        "peripheral"
+      ],
+      "significance": "significant",
+      "certainty": "definite",
+      "seen_on": [],
+      "source": "official_report",
+      "concordance": "missed"
     }
   ],
-  "impression": "Six contiguous axial levels of an unenhanced chest CT on soft-tissue window, descending from the upper thorax to the lung bases. The upper three levels are unremarkable. The lower three demonstrate a bilateral basal parenchymal process, right greater than left, with posterior and dependent predominance. On the right there is extensive heterogeneous opacity containing multiple small rounded and tubular air-density lucencies on a background of coarse reticular and branching lines. On the left, evident on the most caudal frame, there are clustered small nodular and short branching opacities of similar character but lesser extent, with the anterior left lung well aerated. The left-sided involvement was not apparent one level cranial, so the process is either more caudal on the left or was under-called there; these frames cannot distinguish those. The abnormality is definitely present and is not vascular — vessels do not contain air-density lucencies. Its nature is not settled here: bronchiectasis with mucus plugging, aspiration or bronchopneumonia, and chronic infection with bronchiolitis are all live considerations, with fibrotic change less likely given the asymmetry. No pneumothorax and no large pleural collection at the levels imaged; airway patent and midline throughout; bones intact. This is a significant bilateral finding that warrants review of the actual study on a lung window, with clinical context, rather than any conclusion drawn from screenshots.",
+  "impression": "Pulmonary edema — diffuse interlobular septal thickening, peribronchial wall thickening, and perihilar ground-glass and consolidation — with a second, separate process superimposed: multiple bilateral peripheral nodules with slight upper lobe predominance, explicitly not typical for edema, including a 9 mm left upper lobe nodule and a 9 mm right upper lobe nodule. Suspicion of a ground-glass halo around several of the nodules, possibly exaggerated by motion artefact. No cavitary lesion. This impression follows the official report, which supersedes the screenshot-derived read recorded across the six supplied frames. That read identified the septal thickening, the peribronchial changes, and the perihilar opacity but attributed all three to airway disease — bronchiectasis, aspiration, and bronchiolitis — and did not reach edema. It also called the three upper-thorax frames unremarkable and missed the nodules entirely. See official_report.read_delta for the full account of what held up and what did not.",
   "differential": [
     {
-      "entity": "Bronchiectasis with mucus plugging, with or without chronic infection",
+      "entity": "Pulmonary edema (the reported diagnosis for the interstitial and perihilar changes)",
       "supporting": [
-        "Tubular and rounded air-density lucencies within opacity, consistent with dilated airways",
-        "Coarse surrounding reticular change",
-        "Bilateral lower lobe predominance is the classic distribution",
-        "Clustered nodular components fit mucus-filled small airways"
+        "Diffuse interlobular septal thickening",
+        "Peribronchial wall thickening",
+        "Perihilar ground-glass and consolidation",
+        "Bilateral and symmetric in distribution"
       ],
       "against": [
-        "Airway calibre relative to the accompanying artery cannot be judged on this window",
-        "No clinical context supplied"
+        "Does not account for the peripheral nodules, which the report calls atypical for edema"
       ],
-      "likelihood": "moderate"
+      "likelihood": "high"
     },
     {
-      "entity": "Aspiration or bronchopneumonia",
+      "entity": "Second process accounting for the bilateral peripheral nodules",
       "supporting": [
-        "Posterior and dependent distribution on both sides",
-        "Right greater than left, matching the more vertical right bronchial anatomy",
-        "Patchy clustered opacity with air bronchograms rather than a lobar pattern"
+        "Peripheral distribution with upper lobe predominance, which edema does not produce",
+        "Possible ground-glass halo around several lesions",
+        "Explicitly flagged in the report as not typical for edema"
       ],
       "against": [
-        "No clinical context, symptom duration, or history supplied",
-        "The reticular background looks more established than a purely acute process"
+        "The report does not commit to an entity, and neither should this record",
+        "No cavitation, which narrows nothing on its own",
+        "Halo may be exaggerated by motion artefact per the report",
+        "No clinical context, immune status, or prior imaging supplied"
       ],
-      "likelihood": "moderate"
-    },
-    {
-      "entity": "Chronic infection with tree-in-bud bronchiolitis, including mycobacterial disease",
-      "supporting": [
-        "Clustered small nodular and branching opacities",
-        "Bilateral basal distribution",
-        "Coexisting airway dilatation"
-      ],
-      "against": [
-        "Tree-in-bud cannot be confirmed on a soft-tissue window — it is a lung-window diagnosis"
-      ],
-      "likelihood": "moderate"
-    },
-    {
-      "entity": "Fibrosis with traction bronchiectasis or honeycombing",
-      "supporting": [
-        "Coarse reticulation",
-        "Cystic spaces",
-        "Bilateral basal distribution"
-      ],
-      "against": [
-        "The lucencies look more like airways than stacked honeycomb cysts",
-        "Marked right-left asymmetry is against a symmetric fibrotic process"
-      ],
-      "likelihood": "low"
-    },
-    {
-      "entity": "Dependent atelectasis or partial volume with the diaphragm",
-      "supporting": [
-        "Dependent posterior distribution",
-        "Basal frames are prone to partial volume averaging"
-      ],
-      "against": [
-        "Neither explains the internal air-density lucencies, the nodular clustering, or the extent seen three levels cranial"
-      ],
-      "likelihood": "low"
+      "likelihood": "high"
     }
   ],
-  "confidence": "moderate",
+  "confidence": "high",
   "limitations": [
-    "Six axial levels only. The costophrenic angles and upper abdomen still were not reached, so the inferior extent of the basal process remains unknown and may continue below the lowest frame supplied.",
-    "Soft-tissue window on all five frames. This is the central limitation for the finding that matters: distinguishing bronchiectasis from consolidation from honeycombing requires a lung window, and none of these frames can do it. Airway-to-artery calibre, the basis of a bronchiectasis call, is not judgeable here.",
-    "Both lower lobe findings are recorded as present but uncharacterised. The differential is genuinely open and its ordering is not a conclusion. The left-sided finding is at 'probable' certainty because it is less extensive and closer to what dependent change can mimic.",
-    "Basal frames are the most vulnerable to partial volume averaging with the diaphragm, which raises apparent density at the lung bases. This does not explain the internal lucencies or the nodular clustering, but it does mean the apparent extent at the most caudal level may be overstated.",
-    "Non-contrast. Mediastinal and hilar nodes cannot be distinguished from unopacified vessels, so nodal assessment accompanying this lung abnormality is impossible.",
-    "No clinical context supplied — no age, sex, symptoms, duration, or history. Acute infection and chronic airway disease look far more alike on one unenhanced frame than they do with a history attached.",
-    "No DICOM metadata. Contrast phase, window, and slice levels are inferred from appearance; slice thickness and study date are unknown.",
-    "No burned-in callipers, scale bar, or HU ROI, so the extent of the abnormality is described but not measured.",
-    "Single acquisition, confirmed by the user. No prior and no follow-up in the base, so nothing establishes whether this is acute, chronic, or changing."
+    "Confidence is high because this case carries the official report, not because the screenshots supported it. The screenshot-derived read reached the wrong pattern and missed the nodules; nothing about the frames themselves became more informative.",
+    "The nature of the peripheral nodules is unresolved. The report describes them and declines to commit to an entity; this record does the same. Halo, upper lobe predominance, and absence of cavitation are recorded as described, not interpreted.",
+    "The ground-glass halo is reported as suspected and possibly exaggerated by motion artefact. It should not be treated as an established feature.",
+    "The named nodules sit at report images 83 and 96. Neither slice was among the six frames supplied, so no screenshot in this record shows them and seen_on is empty for those findings.",
+    "The 9 mm measurements come from the official report, read off the full study. They are not screenshot estimates and should not be re-derived from any frame here.",
+    "Six axial soft-tissue-window frames were supplied, spanning roughly T2 to T10. Ground-glass, septal detail, and small peripheral nodules are all lung-window findings; this window could not have characterised any of them, and the record said so on every frame.",
+    "No clinical context supplied — no age, sex, symptoms, cardiac or renal history, immune status, or fluid balance. Edema has causes, and the nodules have a differential that turns almost entirely on immune status and history.",
+    "Non-contrast, and no DICOM metadata. Study date unknown.",
+    "Single acquisition, confirmed by the user. No prior and no follow-up in the base, so nothing establishes whether the edema or the nodules are new, resolving, or progressing."
   ],
   "compare_to": [],
   "tags": [
     "chest",
-    "upper-thorax",
-    "carina",
-    "main-bronchi",
-    "heart-level",
-    "lung-base",
     "non-contrast",
     "soft-tissue-window",
     "multi-level",
-    "bilateral-basal-process",
-    "rll-abnormality",
-    "lll-abnormality",
-    "needs-lung-window",
-    "revised-read"
+    "pulmonary-edema",
+    "septal-thickening",
+    "peribronchial-thickening",
+    "pulmonary-nodules",
+    "halo-sign",
+    "official-report",
+    "read-corrected",
+    "teaching-case"
   ],
-  "notes": "First case in the base. Upper three levels are a normal-appearing thoracic reference; the lower three carry a significant bilateral basal abnormality, right greater than left. Finding was initially logged on frame 4 as 'rll-posteromedial-opacity' at possible certainty and attributed to crowded vasculature; frame 5 superseded that and the finding was renamed to 'rll-heterogeneous-opacity' and upgraded to definite. No comparison had been run against the old slug, so no comparison history was broken by the rename. Image pixels not attached for any frame — all six screenshots arrived as conversation attachments rather than files."
+  "notes": "First case in the base, and the most instructive one in it. Carries an official report that supersedes the screenshot-derived read. The screenshot read recharacterised three real features as airway disease and missed both the unifying diagnosis of edema and a separate nodular process. Superseded finding slugs, retired when the report arrived: 'rll-posteromedial-opacity' (frame 4, possible certainty, attributed to crowded vasculature), 'rll-heterogeneous-opacity' and 'lll-nodular-opacity' (frames 5-6, attributed to bronchiectasis or aspiration). No comparison had been run against any of them, so no comparison history was broken. Image pixels not attached for any frame — all six screenshots arrived as conversation attachments rather than files.",
+  "official_report": {
+    "text": "There is diffuse interlobular septal thickening, peribronchial wall thickening, and perihilar ground-glass and consolidation in keeping with pulmonary edema. However, there are additional bilateral peripheral nodules in both lungs with a slight upper lobe predominance, not typical in appearance for edema. For example, these include 9 mm nodule in the left upper lobe (image 83) and 9 mm nodule in the right upper lobe (image 96). There is suspicion for a ground-glass halo around several of the lesions, although this may be exaggerated by motion artifact. No cavitary lesion.",
+    "provided_by": "user-supplied official report",
+    "date": null,
+    "read_delta": "The screenshot read got the pattern wrong and missed the nodules entirely.\n\nRECHARACTERISED — the basal abnormality is pulmonary edema, not airway disease. Every component was seen and every component was misattributed. The 'coarse irregular reticular and branching lines' are interlobular septal thickening. The 'small rounded and tubular air-density lucencies' are peribronchial cuffing around normal air-filled bronchi, not dilated airways; that single misreading drove bronchiectasis to the top of the differential and kept it there across two frames. The 'irregular opacity extending from the perihilar region' is perihilar ground-glass and consolidation — the screenshot read described the perihilar distribution in those words without recognising it as the signature of edema.\n\nMISSED — bilateral peripheral nodules with slight upper lobe predominance, including a 9 mm left upper lobe nodule and a 9 mm right upper lobe nodule, with suspicion of ground-glass halo. The three upper-thorax frames were called 'unremarkable'. The standing limitation that a soft-tissue window cannot assess for nodules was recorded correctly on every frame, but the impression used the word 'unremarkable' anyway, which is stronger than the limitation permits. A 9 mm peripheral nodule on soft-tissue window is close to invisible, and the named nodules sit at image 83 and 96, slices that were never supplied — so this was not necessarily findable here. That explains the miss; it does not excuse the wording.\n\nOVER-CALLED — nothing in the differential's leading positions survives. Bronchiectasis with mucus plugging, aspiration or bronchopneumonia, and tree-in-bud bronchiolitis were all ranked moderate and all are wrong. Fibrosis was correctly ranked low. Dependent atelectasis and partial volume were correctly rejected.\n\nWHAT HELD UP — the abnormality was correctly called definitely present, correctly called bilateral and right greater than left, correctly called not vascular, and correctly escalated as significant and needing review of the actual study. No size or attenuation was ever invented. The structural discipline held; the interpretation did not."
+  }
 }

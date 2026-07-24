@@ -53,40 +53,97 @@
           "slice_level": "Lung bases approaching the diaphragm, approximately T9-T10. Lung cross-sections reducing; central soft tissue is heart with diaphragm and upper abdominal contents beginning to enter the field."
         }
       ],
-      "impression": "Six contiguous axial levels of an unenhanced chest CT on soft-tissue window, descending from the upper thorax to the lung bases. The upper three levels are unremarkable. The lower three demonstrate a bilateral basal parenchymal process, right greater than left, with posterior and dependent predominance. On the right there is extensive heterogeneous opacity containing multiple small rounded and tubular air-density lucencies on a background of coarse reticular and branching lines. On the left, evident on the most caudal frame, there are clustered small nodular and short branching opacities of similar character but lesser extent, with the anterior left lung well aerated. The left-sided involvement was not apparent one level cranial, so the process is either more caudal on the left or was under-called there; these frames cannot distinguish those. The abnormality is definitely present and is not vascular — vessels do not contain air-density lucencies. Its nature is not settled here: bronchiectasis with mucus plugging, aspiration or bronchopneumonia, and chronic infection with bronchiolitis are all live considerations, with fibrotic change less likely given the asymmetry. No pneumothorax and no large pleural collection at the levels imaged; airway patent and midline throughout; bones intact. This is a significant bilateral finding that warrants review of the actual study on a lung window, with clinical context, rather than any conclusion drawn from screenshots.",
-      "confidence": "moderate",
+      "impression": "Pulmonary edema — diffuse interlobular septal thickening, peribronchial wall thickening, and perihilar ground-glass and consolidation — with a second, separate process superimposed: multiple bilateral peripheral nodules with slight upper lobe predominance, explicitly not typical for edema, including a 9 mm left upper lobe nodule and a 9 mm right upper lobe nodule. Suspicion of a ground-glass halo around several of the nodules, possibly exaggerated by motion artefact. No cavitary lesion. This impression follows the official report, which supersedes the screenshot-derived read recorded across the six supplied frames. That read identified the septal thickening, the peribronchial changes, and the perihilar opacity but attributed all three to airway disease — bronchiectasis, aspiration, and bronchiolitis — and did not reach edema. It also called the three upper-thorax frames unremarkable and missed the nodules entirely. See official_report.read_delta for the full account of what held up and what did not.",
+      "confidence": "high",
+      "has_official_report": true,
       "tags": [
         "chest",
-        "upper-thorax",
-        "carina",
-        "main-bronchi",
-        "heart-level",
-        "lung-base",
         "non-contrast",
         "soft-tissue-window",
         "multi-level",
-        "bilateral-basal-process",
-        "rll-abnormality",
-        "lll-abnormality",
-        "needs-lung-window",
-        "revised-read"
+        "pulmonary-edema",
+        "septal-thickening",
+        "peribronchial-thickening",
+        "pulmonary-nodules",
+        "halo-sign",
+        "official-report",
+        "read-corrected",
+        "teaching-case"
       ],
       "findings": [
         {
-          "id": "rll-heterogeneous-opacity",
+          "id": "interlobular-septal-thickening",
           "organ": "lung",
-          "laterality": "right",
-          "location": "right lower lobe, extending from the perihilar region laterally and posteriorly",
+          "laterality": "bilateral",
+          "location": "diffuse",
           "size_mm": null,
-          "significance": "significant"
+          "significance": "significant",
+          "source": "both",
+          "concordance": "recharacterised"
         },
         {
-          "id": "lll-nodular-opacity",
+          "id": "peribronchial-wall-thickening",
+          "organ": "lung",
+          "laterality": "bilateral",
+          "location": "diffuse",
+          "size_mm": null,
+          "significance": "significant",
+          "source": "both",
+          "concordance": "recharacterised"
+        },
+        {
+          "id": "perihilar-ground-glass-consolidation",
+          "organ": "lung",
+          "laterality": "bilateral",
+          "location": "perihilar",
+          "size_mm": null,
+          "significance": "significant",
+          "source": "both",
+          "concordance": "recharacterised"
+        },
+        {
+          "id": "pulmonary-edema",
+          "organ": "lung",
+          "laterality": "bilateral",
+          "location": "diffuse, perihilar predominant",
+          "size_mm": null,
+          "significance": "significant",
+          "source": "official_report",
+          "concordance": "missed"
+        },
+        {
+          "id": "bilateral-peripheral-nodules",
+          "organ": "lung",
+          "laterality": "bilateral",
+          "location": "peripheral, both lungs, slight upper lobe predominance",
+          "size_mm": null,
+          "significance": "significant",
+          "source": "official_report",
+          "concordance": "missed"
+        },
+        {
+          "id": "lul-nodule-image83",
           "organ": "lung",
           "laterality": "left",
-          "location": "left lower lobe, posterior and dependent",
-          "size_mm": null,
-          "significance": "significant"
+          "location": "left upper lobe (report image 83)",
+          "size_mm": [
+            9
+          ],
+          "significance": "significant",
+          "source": "official_report",
+          "concordance": "missed"
+        },
+        {
+          "id": "rul-nodule-image96",
+          "organ": "lung",
+          "laterality": "right",
+          "location": "right upper lobe (report image 96)",
+          "size_mm": [
+            9
+          ],
+          "significance": "significant",
+          "source": "official_report",
+          "concordance": "missed"
         }
       ]
     }

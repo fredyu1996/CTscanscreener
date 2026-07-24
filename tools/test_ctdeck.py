@@ -281,6 +281,50 @@ class TestSchemaValidator(unittest.TestCase):
         self.assertTrue(ctdeck.validate_against(case, self.schema, self.schema))
 
 
+class TestOfficialReport(unittest.TestCase):
+    def setUp(self):
+        self.schema = ctdeck.load_schema()
+
+    def _case(self):
+        return {
+            "case_id": "CASE-0001", "added": "2026-01-01",
+            "study": {"region": "chest"}, "findings": [],
+            "impression": "x", "confidence": "high",
+        }
+
+    def test_official_report_accepted(self):
+        case = self._case()
+        case["official_report"] = {"text": "Findings.", "provided_by": "user",
+                                   "date": None, "read_delta": "missed the nodules"}
+        self.assertEqual(ctdeck.validate_against(case, self.schema, self.schema), [])
+
+    def test_official_report_requires_text(self):
+        case = self._case()
+        case["official_report"] = {"provided_by": "user"}
+        errors = ctdeck.validate_against(case, self.schema, self.schema)
+        self.assertTrue(any("text" in e for e in errors))
+
+    def test_concordance_enum_enforced(self):
+        case = self._case()
+        case["findings"] = [{"id": "n", "organ": "lung", "description": "d",
+                             "concordance": "sort-of-right"}]
+        self.assertTrue(ctdeck.validate_against(case, self.schema, self.schema))
+
+    def test_concordance_and_source_accepted(self):
+        case = self._case()
+        case["findings"] = [{"id": "n", "organ": "lung", "description": "d",
+                             "source": "official_report", "concordance": "missed"}]
+        self.assertEqual(ctdeck.validate_against(case, self.schema, self.schema), [])
+
+    def test_report_sourced_finding_may_have_empty_seen_on(self):
+        # A finding from the report can describe a slice no frame shows.
+        case = self._case()
+        case["frames"] = [{"id": "f"}]
+        case["findings"] = [{"id": "n", "organ": "lung", "description": "d",
+                             "source": "official_report", "seen_on": []}]
+        self.assertEqual(ctdeck.validate_against(case, self.schema, self.schema), [])
+
+
 class TestTemplateAndExamples(unittest.TestCase):
     def test_template_is_valid_json(self):
         json.loads((ROOT / "templates" / "case-template.json").read_text())
@@ -299,6 +343,17 @@ class TestTemplateAndExamples(unittest.TestCase):
             with self.subTest(case=path.name):
                 case = json.loads(path.read_text())
                 self.assertEqual(ctdeck.validate_against(case, schema, schema), [])
+
+    def test_reported_cases_score_every_finding(self):
+        # If a case has ground truth, every finding should say how the read fared.
+        for path in sorted((ROOT / "cases").glob("CASE-*.json")):
+            case = json.loads(path.read_text())
+            if not case.get("official_report"):
+                continue
+            for f in case.get("findings", []):
+                with self.subTest(case=path.name, finding=f["id"]):
+                    self.assertIn(f.get("concordance"),
+                                  ctdeck.CONCORDANCE_ORDER)
 
     def test_seen_on_only_references_declared_frames(self):
         for path in sorted((ROOT / "cases").glob("CASE-*.json")):

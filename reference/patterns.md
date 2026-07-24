@@ -30,33 +30,64 @@ anything short of a large mass, consolidation, or effusion will not show; absenc
 finding here is weak evidence, and the same slice on a lung window is a different
 examination. On non-contrast, mediastinal fat is dark and everything else in the
 mediastinum — nodes, vessels, thymic remnant — is one undifferentiated grey.
-**Cases:** CASE-0001 (all three levels)
+**Cases:** CASE-0001 (all three levels) — but note the caveat: those levels were called
+unremarkable on soft-tissue window, and the official report subsequently described
+peripheral nodules with upper lobe predominance. Treat this entry as a reference for
+*normal anatomy at these levels*, never as evidence that a clean-looking soft-tissue
+frame excludes upper lobe disease.
 
-### Crowded lower-lobe vessels vs true nodularity
-Below the hila the lower-lobe vessels run obliquely through the slice and pile up into
-clusters of short branches and rounded cross-sections. On a soft-tissue window they are
-bright white against black lung, and a dense cluster can look convincingly like nodules
-or tree-in-bud.
-**Discriminators** — vessels branch and taper, and connect back toward the hilum when
-traced across adjacent slices; true nodules do not. Neither test is available on a
-single frame, and none of it is separable on a soft-tissue window. Asymmetry against the
-contralateral lobe is suggestive but weak on its own — the lobes are not mirror images
-and the slice rarely cuts both at equivalent levels. The strongest discriminator that
-*is* available on soft-tissue window: **air-density lucencies inside the opacity**.
-Vessels do not contain air. Internal lucencies mean airways, cysts, or aerated lung
-within a process, and take the appearance out of the vascular differential entirely.
+### Interstitial pulmonary edema — and how it gets misread
+Diffuse interlobular septal thickening, peribronchial wall thickening, and perihilar
+ground-glass and consolidation. Bilateral, broadly symmetric, perihilar predominant,
+often with dependent accentuation.
+**Discriminators** — the triad is the diagnosis; no single element is. Perihilar
+distribution is the signature and is easy to describe without recognising.
 **Cases:** CASE-0001
 
-**What this case taught (worth more than the entry above).** On CASE-0001 frame 4 this
-appearance was called probable crowded vasculature at `possible` certainty. One level
-caudal, frame 5 showed the same process with obvious internal lucencies and far greater
-extent — it was never vascular. The conservative read was wrong, and what corrected it
-was **one more slice in the same direction**, not more scrutiny of the original frame.
+**The trap, documented from getting it wrong (CASE-0001).** On soft-tissue window each
+component of edema has an airway-disease look-alike, and reading them individually
+rather than as a pattern leads directly to the wrong answer:
 
-When an asymmetric basal opacity is equivocal on soft-tissue window, the cheapest next
-move is the adjacent caudal slice. A vascular cluster thins and reconnects to the hilum;
-a real process gets larger and more structured. Log the equivocal read at low certainty
-so it stays visible until something settles it, and expect to revise it.
+| Edema feature | Misread on soft-tissue window as |
+|---|---|
+| Interlobular septal thickening | Coarse reticulation of chronic fibrosis or airway disease |
+| Peribronchial wall thickening (cuffed normal bronchi) | **Dilated airways → bronchiectasis** |
+| Perihilar ground-glass and consolidation | Patchy clustered opacity of aspiration or bronchopneumonia |
+| Dependent accentuation | Dependent distribution of aspiration |
+
+The hinge is the second row. Air-density lucencies inside opacity were treated as proof
+of dilated airways, and that single inference put bronchiectasis at the top of the
+differential and kept it there. **Air inside an opacity means a bronchus is present and
+visible — it does not mean the bronchus is dilated.** Bronchiectasis requires the airway
+to exceed its accompanying artery, which is a lung-window measurement and was never
+available. An unmeasurable criterion cannot support a diagnosis.
+
+**Correct order of operations.** Establish the pattern across all frames before naming
+any component. Bilateral, symmetric, perihilar, with septal lines is edema until proven
+otherwise. Asymmetry in *extent* does not overturn it — CASE-0001 was right greater than
+left throughout and was still edema.
+
+### Nodules on a soft-tissue window
+A 9 mm peripheral nodule is close to invisible on soft-tissue window. Nodules are a
+lung-window finding.
+**Discriminators** — none available. That is the entry.
+**Cases:** CASE-0001 (bilateral peripheral nodules with slight upper lobe predominance,
+9 mm LUL and 9 mm RUL, missed entirely on six soft-tissue frames)
+
+**The wording lesson.** In CASE-0001 the limitation "pulmonary nodules are not assessable
+without a lung window" was recorded correctly on every single frame — and the impression
+still said the upper-thorax levels were "unremarkable". Both cannot be true. A correct
+limitation does not license an incorrect summary word.
+
+Use **"no discrete abnormality identified at this level on this window"**. Never
+"unremarkable", "clear", or "normal" for a window that cannot show the thing being
+excluded. The named nodules sat at slices never supplied, so the miss was not
+necessarily avoidable — the overclaim was.
+
+**Second-process discipline.** Edema explained the perihilar changes; it did not explain
+peripheral upper-lobe nodules, and the report said so explicitly. Once a unifying
+diagnosis fits, features that do not fit it deserve more scrutiny, not less. Ask of every
+confident read: what here does my diagnosis fail to account for?
 
 ### Solid pulmonary nodule
 Round soft-tissue density within aerated lung. What matters for the record: size
@@ -98,7 +129,15 @@ history*, not by density:
 Basal frames are also the most vulnerable to **partial volume averaging with the
 diaphragm**, which raises apparent density and can overstate extent at the most caudal
 level. It never explains internal lucencies or nodular clustering.
-**Cases:** CASE-0001 (bilateral, right greater than left)
+
+**Missing from that list, and it is the one that caught CASE-0001: pulmonary edema.**
+This entry was originally written from that case while the read was still wrong, and it
+omitted edema entirely — which is precisely how the misread happened. Peribronchial
+cuffing supplies the internal lucencies, septal thickening supplies the reticulation, and
+dependent accentuation supplies the distribution. Check the perihilar territory and look
+for septal lines before working down an airway-disease differential.
+**Cases:** none confirmed. CASE-0001 presented this way and proved to be edema — see the
+interstitial pulmonary edema entry above.
 
 ### Pleural effusion
 Dependent fluid-density collection layering posteriorly on supine axial imaging.

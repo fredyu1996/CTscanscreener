@@ -68,6 +68,17 @@ warning that the two records look like one acquisition.
    - `confidence: high` needs genuine justification. Most single screenshots are
      `low` or `moderate`.
    - `limitations` is never empty for a screenshot-derived record.
+   - **The impression must not contradict the limitations.** If the limitation says
+     nodules are not assessable on this window, the impression cannot say "unremarkable".
+     Write "no discrete abnormality identified at this level on this window" instead.
+     Never "unremarkable", "clear", or "normal" for a window that cannot show the thing
+     being excluded. This is recorded because it was got wrong in CASE-0001.
+   - Establish the **pattern across all frames** before naming any single component. In
+     CASE-0001 each feature of pulmonary edema was read individually and each was matched
+     to an airway-disease look-alike; the diagnosis was in the distribution, not in any
+     one feature.
+   - Ask of any confident read: **what does my diagnosis fail to account for?** A feature
+     that does not fit the unifying diagnosis deserves more scrutiny, not less.
 5. Save each image as `images/CASE-XXXX-<frame-id>.<ext>` and set the frame's `image`.
    If a screenshot arrives as a chat attachment rather than a file, it is not on disk —
    leave `image` null, say so in `notes`, and ask the user to drop the file in `inbox/`.
@@ -87,6 +98,26 @@ phase or plane between studies makes size deltas unreliable, and the tool says s
 Translate the output into prose for the user rather than pasting the raw table: what
 changed, by how much, what's new, what's gone, and which parts of that are solid versus
 artefact-of-the-frame. Then record the comparison in the current case's `compare_to`.
+
+## When an official report arrives
+
+The report is ground truth and outranks the screenshot read everywhere they differ.
+
+1. Put it verbatim in `official_report.text` with its source.
+2. Write `official_report.read_delta` — an honest account of what the screenshot read got
+   right, what it saw but misattributed, and what it missed outright. Do not soften it.
+3. Rework `findings` to match the report. Tag each with `source` and `concordance`
+   (`concordant`, `recharacterised`, `missed`, `over_called`). Findings the report
+   describes on slices never supplied get `seen_on: []` — that is expected, not an error.
+4. Retire superseded finding slugs, and record them in `notes` so the trail survives.
+5. Raise `confidence` only because ground truth is now attached, and say so in
+   `limitations` — the frames did not become more informative.
+6. **Correct `reference/patterns.md`.** An entry written from a wrong read teaches the
+   wrong lesson to every future case. Check for entries that now contradict the report
+   and fix them, including ones written earlier in the same session.
+
+`python3 tools/ctdeck.py concordance` scores every reported case. Misses and
+recharacterisations sort to the top; that list is the point of the exercise.
 
 ## Growing the reference material
 

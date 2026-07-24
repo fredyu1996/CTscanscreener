@@ -348,7 +348,7 @@ def cmd_show(args: argparse.Namespace) -> int:
             detail.append(f"{hu.get('min', '?')}–{hu.get('max', '?')} HU")
         if hu.get("qualitative"):
             detail.append(hu["qualitative"])
-        for key in ("margins", "enhancement", "significance", "certainty"):
+        for key in ("margins", "enhancement", "significance", "certainty", "source", "concordance"):
             if f.get(key):
                 detail.append(f"{key}: {f[key]}")
         if f.get("morphology"):
@@ -367,6 +367,18 @@ def cmd_show(args: argparse.Namespace) -> int:
                 print(f"      + {s}")
             for a in d.get("against", []):
                 print(f"      - {a}")
+
+    report = case.get("official_report")
+    if report:
+        print(f"\nOFFICIAL REPORT\n{'-' * 72}")
+        print(f"  source: {report.get('provided_by') or 'unspecified'}"
+              f"{'  ' + report['date'] if report.get('date') else ''}")
+        for line in report["text"].split("\n"):
+            print(f"  {line}")
+        if report.get("read_delta"):
+            print(f"\n  SCREENSHOT READ vs REPORT")
+            for line in report["read_delta"].split("\n"):
+                print(f"  {line}" if line else "")
 
     print(f"\nCONFIDENCE: {case['confidence']}")
     for lim in case.get("limitations", []):
@@ -579,6 +591,61 @@ def cmd_similar(args: argparse.Namespace) -> int:
     return 0
 
 
+CONCORDANCE_ORDER = ["missed", "recharacterised", "over_called", "concordant"]
+CONCORDANCE_GLOSS = {
+    "missed": "in the report, not identified from the screenshots",
+    "recharacterised": "seen on the screenshots but attributed wrongly",
+    "over_called": "asserted from the screenshots, not supported by the report",
+    "concordant": "screenshot read agreed with the report",
+}
+
+
+def cmd_concordance(args: argparse.Namespace) -> int:
+    """Score the screenshot reads against the official reports that exist."""
+    cases = [c for c in load_all() if c.get("official_report")]
+    if not cases:
+        print("\nNo case in the base carries an official report yet, so there is nothing")
+        print("to score against. Add one to a case's official_report field.\n")
+        return 0
+
+    buckets: dict[str, list[tuple[str, dict]]] = {k: [] for k in CONCORDANCE_ORDER}
+    unscored = 0
+    for case in cases:
+        for f in case.get("findings", []):
+            key = f.get("concordance")
+            if key in buckets:
+                buckets[key].append((case["case_id"], f))
+            else:
+                unscored += 1
+
+    total = sum(len(v) for v in buckets.values())
+    print(f"\nCONCORDANCE  —  {total} scored finding(s) across "
+          f"{len(cases)} case(s) with an official report")
+    print("=" * 72)
+
+    for key in CONCORDANCE_ORDER:
+        rows = buckets[key]
+        print(f"\n{key.upper().replace('_', ' ')} ({len(rows)})  — {CONCORDANCE_GLOSS[key]}")
+        print("-" * 72)
+        if not rows:
+            print("  none")
+        for case_id, f in rows:
+            site = " ".join(x for x in [
+                f.get("laterality") if f.get("laterality") not in (None, "n/a") else None,
+                f.get("organ"), f.get("location")] if x)
+            print(f"  {case_id}  [{f['id']}]  {site}")
+
+    if unscored:
+        print(f"\n{unscored} finding(s) in reported cases carry no concordance value.")
+
+    missed = len(buckets["missed"]) + len(buckets["recharacterised"])
+    if missed:
+        print(f"\nThe {missed} entr(y/ies) above the line are the ones worth rereading.")
+        print("A base that only records its hits teaches the wrong lessons.")
+    print()
+    return 0
+
+
 def cmd_validate(args: argparse.Namespace) -> int:
     schema = load_schema()
     paths = case_paths()
@@ -660,6 +727,7 @@ def cmd_index(args: argparse.Namespace) -> int:
             ],
             "impression": case["impression"],
             "confidence": case["confidence"],
+            "has_official_report": bool(case.get("official_report")),
             "tags": case.get("tags", []),
             "findings": [
                 {
@@ -669,6 +737,8 @@ def cmd_index(args: argparse.Namespace) -> int:
                     "location": f.get("location"),
                     "size_mm": f.get("size_mm"),
                     "significance": f.get("significance"),
+                    "source": f.get("source"),
+                    "concordance": f.get("concordance"),
                 }
                 for f in case.get("findings", [])
             ],
@@ -909,6 +979,9 @@ def main(argv: Iterable[str] | None = None) -> int:
     p.add_argument("case_id")
     p.add_argument("--limit", type=int, default=5)
     p.set_defaults(func=cmd_similar)
+
+    p = sub.add_parser("concordance", help="score screenshot reads against official reports")
+    p.set_defaults(func=cmd_concordance)
 
     p = sub.add_parser("validate", help="check every case against the schema")
     p.add_argument("-v", "--verbose", action="store_true")

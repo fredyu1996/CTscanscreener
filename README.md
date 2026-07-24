@@ -54,6 +54,9 @@ python3 tools/ctdeck.py compare CASE-0001 CASE-0004
 # find cases in the base resembling a new one
 python3 tools/ctdeck.py similar CASE-0004
 
+# score screenshot reads against official reports — what was missed, what was misread
+python3 tools/ctdeck.py concordance
+
 # validate every record against the schema
 python3 tools/ctdeck.py validate
 
@@ -93,6 +96,13 @@ detail (organ, laterality, location, size in up to 3 axes, attenuation in HU, ma
 enhancement, morphology), an overall impression, and an explicit `confidence` +
 `limitations` block so the weak parts of a screenshot-only read stay visible rather
 than getting laundered into false certainty.
+
+**Ground truth beats my read.** When you have the reporting radiologist's findings, they
+go in `official_report` and outrank everything I derived from the screenshots. Each
+finding is then tagged with how my read fared — `concordant`, `recharacterised` (seen but
+attributed wrongly), `missed`, or `over_called` — and `ctdeck.py concordance` lists the
+misses and misreads across the whole base. That list is the most useful thing in here: a
+base that only records its hits teaches the wrong lessons.
 
 See [`templates/case-template.json`](templates/case-template.json) for the blank
 form and [`docs/WORKFLOW.md`](docs/WORKFLOW.md) for the full ingest and
