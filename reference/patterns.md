@@ -32,6 +32,19 @@ examination. On non-contrast, mediastinal fat is dark and everything else in the
 mediastinum — nodes, vessels, thymic remnant — is one undifferentiated grey.
 **Cases:** CASE-0001 (all three levels)
 
+### Crowded lower-lobe vessels vs true nodularity
+Below the hila the lower-lobe vessels run obliquely through the slice and pile up into
+clusters of short branches and rounded cross-sections. On a soft-tissue window they are
+bright white against black lung, and a dense cluster can look convincingly like nodules
+or tree-in-bud.
+**Discriminators** — vessels branch and taper, and connect back toward the hilum when
+traced across adjacent slices; true nodules do not. Neither test is available on a
+single frame, and none of it is separable on a soft-tissue window. Asymmetry against the
+contralateral lobe is suggestive but weak on its own — the lobes are not mirror images
+and the slice rarely cuts both at equivalent levels. **The resolution is a lung window
+through the same level, not more staring at the soft-tissue frame.**
+**Cases:** CASE-0001 (right lower lobe, open at `possible` certainty)
+
 ### Solid pulmonary nodule
 Round soft-tissue density within aerated lung. What matters for the record: size
 (longest axis), margins (smooth / lobulated / spiculated), presence of calcification and
