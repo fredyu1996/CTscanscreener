@@ -26,7 +26,9 @@ studies (interval change) and against the reference patterns accumulated so far.
 
 1. **Add a scan.** Drop the image anywhere in the repo (`inbox/` is the default
    landing spot) and tell me about it. Minimum useful context: body region, and if
-   you have it, patient ID/pseudonym, study date, contrast phase.
+   you have it, patient ID/pseudonym, study date, contrast phase. Say whether a new
+   frame belongs to a study already in the base — that decides whether it joins an
+   existing case or starts a new one.
 2. **I analyse it.** I read the image, describe what's visible, and write a case
    record — one JSON file per study in `cases/`, validated against
    [`schema/case.schema.json`](schema/case.schema.json).
@@ -70,7 +72,7 @@ No dependencies beyond the Python 3.9+ standard library.
 |---|---|
 | `cases/` | One `CASE-XXXX.json` per study — the knowledge base itself |
 | `cases/index.json` | Generated lookup table; rebuild with `ctdeck.py index` |
-| `images/` | Source screenshots, named to match their case ID |
+| `images/` | Source screenshots, named to match their case and frame |
 | `inbox/` | Drop zone for scans not yet processed |
 | `schema/case.schema.json` | The record format every case conforms to |
 | `templates/` | Blank case template + the analysis checklist I work through |
@@ -79,11 +81,18 @@ No dependencies beyond the Python 3.9+ standard library.
 
 ## What a case record captures
 
-Study context (region, contrast phase, plane, window), per-finding detail
-(organ, laterality, location, size in up to 3 axes, attenuation in HU, margins,
-enhancement, morphology), an overall impression, and an explicit
-`confidence` + `limitations` block so the weak parts of a screenshot-only read
-stay visible rather than getting laundered into false certainty.
+**One case is one study, not one screenshot.** A single acquisition can supply many
+frames — different levels, different windows — and they all live in that case's
+`frames` array. This matters: if two slices of one scan became two cases, comparing
+them would report findings appearing and vanishing purely because of which level each
+frame cut through. Findings can name the frames they were `seen_on`, so absence is
+never confused with resolution.
+
+Beyond that: study context (region, contrast phase, slice thickness), per-finding
+detail (organ, laterality, location, size in up to 3 axes, attenuation in HU, margins,
+enhancement, morphology), an overall impression, and an explicit `confidence` +
+`limitations` block so the weak parts of a screenshot-only read stay visible rather
+than getting laundered into false certainty.
 
 See [`templates/case-template.json`](templates/case-template.json) for the blank
 form and [`docs/WORKFLOW.md`](docs/WORKFLOW.md) for the full ingest and

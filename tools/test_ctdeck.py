@@ -127,6 +127,73 @@ class TestOverallChange(unittest.TestCase):
         self.assertIn("+5%", rationale)
 
 
+class TestComparisonWarnings(unittest.TestCase):
+    def case(self, patient="PT-A", date="2026-01-01", region="chest",
+             contrast="non_contrast", frames=None):
+        return {
+            "patient": {"id": patient},
+            "study": {"region": region, "study_date": date, "contrast": contrast},
+            "frames": frames if frames is not None else [{"id": "f", "plane": "axial",
+                                                          "window": "soft_tissue"}],
+        }
+
+    def test_same_patient_same_date_is_flagged_as_one_study(self):
+        a, b = self.case(), self.case()
+        self.assertTrue(ctdeck.looks_like_one_study(a, b))
+        self.assertTrue(any("SAME PATIENT AND SAME STUDY DATE" in w
+                            for w in ctdeck.comparison_warnings(a, b)))
+
+    def test_different_dates_are_a_real_interval_comparison(self):
+        a, b = self.case(date="2026-01-01"), self.case(date="2026-07-01")
+        self.assertFalse(ctdeck.looks_like_one_study(a, b))
+        self.assertEqual(ctdeck.comparison_warnings(a, b), [])
+
+    def test_unknown_dates_do_not_trigger_same_study(self):
+        # Two undated records could be anything; don't assert they are one scan.
+        a, b = self.case(date=None), self.case(date=None)
+        self.assertFalse(ctdeck.looks_like_one_study(a, b))
+
+    def test_unknown_patients_do_not_trigger_same_study(self):
+        a, b = self.case(patient=None), self.case(patient=None)
+        self.assertFalse(ctdeck.looks_like_one_study(a, b))
+
+    def test_different_patient_warns(self):
+        warnings = ctdeck.comparison_warnings(self.case(patient="PT-A"),
+                                              self.case(patient="PT-B", date="2026-07-01"))
+        self.assertTrue(any("different patient ids" in w for w in warnings))
+
+    def test_contrast_phase_mismatch_warns(self):
+        warnings = ctdeck.comparison_warnings(
+            self.case(contrast="non_contrast"),
+            self.case(contrast="portal_venous", date="2026-07-01"))
+        self.assertTrue(any("contrast phases" in w for w in warnings))
+
+    def test_window_mismatch_warns(self):
+        warnings = ctdeck.comparison_warnings(
+            self.case(frames=[{"id": "a", "plane": "axial", "window": "soft_tissue"}]),
+            self.case(date="2026-07-01",
+                      frames=[{"id": "b", "plane": "axial", "window": "lung"}]))
+        self.assertTrue(any("no shared window" in w for w in warnings))
+
+    def test_overlapping_windows_do_not_warn(self):
+        warnings = ctdeck.comparison_warnings(
+            self.case(frames=[{"id": "a", "window": "soft_tissue"},
+                              {"id": "b", "window": "lung"}]),
+            self.case(date="2026-07-01", frames=[{"id": "c", "window": "lung"}]))
+        self.assertFalse(any("no shared window" in w for w in warnings))
+
+    def test_plane_mismatch_warns(self):
+        warnings = ctdeck.comparison_warnings(
+            self.case(frames=[{"id": "a", "plane": "axial"}]),
+            self.case(date="2026-07-01", frames=[{"id": "b", "plane": "coronal"}]))
+        self.assertTrue(any("no shared imaging plane" in w for w in warnings))
+
+    def test_missing_frame_metadata_does_not_warn(self):
+        warnings = ctdeck.comparison_warnings(
+            self.case(frames=[]), self.case(date="2026-07-01", frames=[]))
+        self.assertEqual(warnings, [])
+
+
 class TestSchemaValidator(unittest.TestCase):
     def setUp(self):
         self.schema = ctdeck.load_schema()
@@ -183,6 +250,30 @@ class TestSchemaValidator(unittest.TestCase):
         case["findings"] = [{"id": "x", "organ": "liver", "description": "d", "size_mm": [0]}]
         self.assertTrue(ctdeck.validate_against(case, self.schema, self.schema))
 
+    def test_frames_accepted(self):
+        case = self._minimal()
+        case["frames"] = [{"id": "carina", "image": None, "plane": "axial",
+                           "window": "soft_tissue", "slice_level": "carina", "notes": None}]
+        self.assertEqual(ctdeck.validate_against(case, self.schema, self.schema), [])
+
+    def test_frame_requires_id(self):
+        case = self._minimal()
+        case["frames"] = [{"plane": "axial"}]
+        errors = ctdeck.validate_against(case, self.schema, self.schema)
+        self.assertTrue(any("id" in e for e in errors))
+
+    def test_frame_rejects_bad_window(self):
+        case = self._minimal()
+        case["frames"] = [{"id": "f", "window": "ultrasound"}]
+        self.assertTrue(ctdeck.validate_against(case, self.schema, self.schema))
+
+    def test_plane_and_window_no_longer_live_on_study(self):
+        case = self._minimal()
+        case["study"]["plane"] = "axial"
+        errors = ctdeck.validate_against(case, self.schema, self.schema)
+        self.assertTrue(any("plane" in e for e in errors),
+                        "plane belongs to a frame, not the study")
+
     def test_size_capped_at_three_axes(self):
         case = self._minimal()
         case["findings"] = [{"id": "x", "organ": "liver", "description": "d",
@@ -201,6 +292,21 @@ class TestTemplateAndExamples(unittest.TestCase):
                 case = json.loads(path.read_text())
                 self.assertEqual(ctdeck.validate_against(case, schema, schema), [])
                 self.assertEqual(case["case_id"], path.stem)
+
+    def test_real_cases_conform_to_schema(self):
+        schema = ctdeck.load_schema()
+        for path in sorted((ROOT / "cases").glob("CASE-*.json")):
+            with self.subTest(case=path.name):
+                case = json.loads(path.read_text())
+                self.assertEqual(ctdeck.validate_against(case, schema, schema), [])
+
+    def test_seen_on_only_references_declared_frames(self):
+        for path in sorted((ROOT / "cases").glob("CASE-*.json")):
+            case = json.loads(path.read_text())
+            frame_ids = {fr["id"] for fr in case.get("frames", [])}
+            for f in case.get("findings", []):
+                with self.subTest(case=path.name, finding=f["id"]):
+                    self.assertTrue(set(f.get("seen_on", [])) <= frame_ids)
 
     def test_example_pair_reports_progression(self):
         a = json.loads((ROOT / "examples" / "CASE-9001.json").read_text())

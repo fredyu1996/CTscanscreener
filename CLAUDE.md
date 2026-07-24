@@ -31,6 +31,20 @@ aortic dissection, tension pneumothorax, bowel ischaemia — say so plainly and 
 and note that it needs real-time review of the actual study, not a screenshot read.
 Under-calling something time-critical is the worse failure.
 
+## One case is one study
+
+Before writing anything, decide whether a new screenshot is a **new study** or
+**another frame of a study already in the base**. Same patient, same window, same crop
+and table position, same contrast appearance, adjacent anatomy — that is one
+acquisition, and the frames belong in one case's `frames` array. Splitting them into
+separate cases corrupts the base: `compare` would then report findings appearing and
+resolving purely because of which level each frame cut through. When the evidence is
+suggestive but not conclusive, record it as one study, say so in `limitations`, and ask
+the user to confirm.
+
+`compare` refuses to be quiet about this — same pseudonym plus same study date raises a
+warning that the two records look like one acquisition.
+
 ## Adding a case
 
 1. Read the image. Work through `templates/analysis-checklist.md` — the whole sweep, in
@@ -43,6 +57,8 @@ Under-calling something time-critical is the worse failure.
 4. Fill the record. Rules that keep the base usable:
    - Finding `id` is a **stable slug** describing the thing (`liver-seg7-lesion`), reused
      across every study of that patient. Comparison pairs on it.
+   - `seen_on` names the frames a finding was actually visible on. A finding absent from
+     a frame that does not cut through it has not resolved — it was never in view.
    - `size_mm` longest axis first. Only record measurements actually readable from the
      frame — a burned-in calliper, a scale bar, or a stated field of view. If nothing
      supports a measurement, leave it null and say so in `limitations` rather than
@@ -52,7 +68,9 @@ Under-calling something time-critical is the worse failure.
    - `confidence: high` needs genuine justification. Most single screenshots are
      `low` or `moderate`.
    - `limitations` is never empty for a screenshot-derived record.
-5. Save the image as `images/CASE-XXXX.<ext>`.
+5. Save each image as `images/CASE-XXXX-<frame-id>.<ext>` and set the frame's `image`.
+   If a screenshot arrives as a chat attachment rather than a file, it is not on disk —
+   leave `image` null, say so in `notes`, and ask the user to drop the file in `inbox/`.
 6. `python3 tools/ctdeck.py validate && python3 tools/ctdeck.py index`
 7. `python3 tools/ctdeck.py similar CASE-XXXX` — surface priors and comparable cases.
 8. Commit to the working branch.

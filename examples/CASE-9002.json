@@ -1,7 +1,6 @@
 {
   "case_id": "CASE-9002",
   "added": "2026-07-24",
-  "source_image": null,
   "patient": {
     "id": "PT-DEMO",
     "age": 58,
@@ -11,13 +10,20 @@
   "study": {
     "region": "abdomen",
     "study_date": "2026-07-06",
-    "plane": "axial",
     "contrast": "portal_venous",
-    "window": "soft_tissue",
     "slice_thickness_mm": 5,
-    "slice_level": "porta hepatis",
     "technique_notes": "Fabricated record used to demonstrate the schema and the compare command."
   },
+  "frames": [
+    {
+      "id": "portal-venous-axial",
+      "image": null,
+      "plane": "axial",
+      "window": "soft_tissue",
+      "slice_level": "porta hepatis",
+      "notes": null
+    }
+  ],
   "findings": [
     {
       "id": "liver-seg7-lesion",
@@ -25,7 +31,11 @@
       "laterality": "right",
       "location": "segment VII",
       "description": "Same segment VII lesion, now larger with a thicker enhancing rim and a lower-density centre.",
-      "size_mm": [31, 27, 25],
+      "size_mm": [
+        31,
+        27,
+        25
+      ],
       "attenuation_hu": {
         "value": 30,
         "min": null,
@@ -34,9 +44,16 @@
       },
       "margins": "lobulated",
       "enhancement": "rim",
-      "morphology": ["solid", "rim-enhancing", "necrotic"],
+      "morphology": [
+        "solid",
+        "rim-enhancing",
+        "necrotic"
+      ],
       "significance": "significant",
-      "certainty": "definite"
+      "certainty": "definite",
+      "seen_on": [
+        "portal-venous-axial"
+      ]
     },
     {
       "id": "liver-seg2-cyst",
@@ -44,7 +61,9 @@
       "laterality": "left",
       "location": "segment II",
       "description": "Unchanged well-defined water-density lesion.",
-      "size_mm": [9],
+      "size_mm": [
+        9
+      ],
       "attenuation_hu": {
         "value": 7,
         "min": null,
@@ -53,9 +72,14 @@
       },
       "margins": "well_defined",
       "enhancement": "none",
-      "morphology": ["cystic"],
+      "morphology": [
+        "cystic"
+      ],
       "significance": "benign",
-      "certainty": "probable"
+      "certainty": "probable",
+      "seen_on": [
+        "portal-venous-axial"
+      ]
     },
     {
       "id": "portacaval-node",
@@ -63,7 +87,10 @@
       "laterality": "n/a",
       "location": "portacaval station",
       "description": "Rounded portacaval node, newly conspicuous, with loss of the fatty hilum.",
-      "size_mm": [13, 11],
+      "size_mm": [
+        13,
+        11
+      ],
       "attenuation_hu": {
         "value": 45,
         "min": null,
@@ -72,17 +99,27 @@
       },
       "margins": "well_defined",
       "enhancement": "homogeneous",
-      "morphology": ["solid"],
+      "morphology": [
+        "solid"
+      ],
       "significance": "significant",
-      "certainty": "definite"
+      "certainty": "definite",
+      "seen_on": [
+        "portal-venous-axial"
+      ]
     }
   ],
   "impression": "Interval enlargement of the segment VII hepatic lesion with central necrosis, plus a new enlarged portacaval node. The segment II cyst is unchanged.",
   "differential": [
     {
       "entity": "Progressive metastatic disease",
-      "supporting": ["Lesion growth with central necrosis", "New enlarged regional node"],
-      "against": ["No primary identified on the supplied frame"],
+      "supporting": [
+        "Lesion growth with central necrosis",
+        "New enlarged regional node"
+      ],
+      "against": [
+        "No primary identified on the supplied frame"
+      ],
       "likelihood": "high"
     }
   ],
@@ -91,7 +128,14 @@
     "Synthetic record — not derived from a real study.",
     "Single frame; nodal short axis and full nodal survey not assessable."
   ],
-  "compare_to": ["CASE-9001"],
-  "tags": ["example", "synthetic", "follow-up", "hepatic-lesion"],
+  "compare_to": [
+    "CASE-9001"
+  ],
+  "tags": [
+    "example",
+    "synthetic",
+    "follow-up",
+    "hepatic-lesion"
+  ],
   "notes": "Demonstration data. Run: CTDECK_CASES=examples python3 tools/ctdeck.py compare CASE-9001 CASE-9002"
 }

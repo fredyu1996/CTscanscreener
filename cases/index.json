@@ -9,13 +9,29 @@
       "study_date": null,
       "region": "chest",
       "contrast": "non_contrast",
-      "source_image": null,
-      "impression": "Technically unremarkable axial frame of the upper thorax. Both lungs are well aerated and extend to the chest wall, with branching pulmonary vessels seen in cross-section and no consolidation, mass, or pleural fluid at this level. Trachea is midline, round, and non-deviated. Mediastinal soft tissue is homogeneous with no discrete mass or clearly enlarged node, though on a non-contrast study unopacified vessels and nodes are isodense and cannot be separated. Sternum, ribs, scapulae, and the thoracic vertebral body appear intact with no fracture, lytic, or sclerotic lesion evident. Chest wall soft tissues show mild left-greater-than-right bulk, most likely positional or habitus-related rather than a discrete finding. No discrete abnormality recorded for this frame.",
+      "frames": [
+        {
+          "id": "upper-thorax-soft-tissue",
+          "image": null,
+          "plane": "axial",
+          "window": "soft_tissue",
+          "slice_level": "Upper thorax, at or just above the aortic arch (approximately T2-T4). Trachea round and midline; no arch contour resolved."
+        },
+        {
+          "id": "carina-soft-tissue",
+          "image": null,
+          "plane": "axial",
+          "window": "soft_tissue",
+          "slice_level": "Carina / proximal main bronchi, approximately T5-T6. Airway seen centrally as a transverse lucency at the bifurcation."
+        }
+      ],
+      "impression": "Two axial levels of an unenhanced chest CT, upper thorax and carina, both technically unremarkable on soft-tissue window. Lungs are well aerated bilaterally and extend to the chest wall on both frames, with normal-calibre branching pulmonary vessels that become appropriately prominent at the hila on the carinal frame. No consolidation, mass, pleural fluid, or pneumothorax at either level. Airway is midline and non-deviated from trachea through to the bifurcation, with no visible intraluminal lesion or extrinsic compression. Mediastinal soft tissue is homogeneous with no discrete mass or clearly enlarged node, though on an unenhanced study nodes and unopacified vessels are isodense and cannot be separated; the subcarinal space in particular cannot be assessed. A rounded left paravertebral contour on the carinal frame is consistent with the descending thoracic aorta in normal position. Sternum, ribs, scapulae, and thoracic vertebrae appear intact with no fracture or lytic or sclerotic lesion. Chest wall soft tissues are mildly bulkier on the left than the right across both frames, most likely positional or habitus-related. No discrete abnormality recorded at either level.",
       "confidence": "moderate",
       "tags": [
         "baseline",
         "chest",
         "upper-thorax",
+        "carina",
         "non-contrast",
         "soft-tissue-window",
         "no-discrete-finding"

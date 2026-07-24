@@ -1,7 +1,6 @@
 {
   "case_id": "CASE-0000",
   "added": "YYYY-MM-DD",
-  "source_image": "images/CASE-0000.png",
   "patient": {
     "id": null,
     "age": null,
@@ -11,13 +10,20 @@
   "study": {
     "region": "abdomen",
     "study_date": null,
-    "plane": "axial",
     "contrast": "unknown",
-    "window": "soft_tissue",
     "slice_thickness_mm": null,
-    "slice_level": null,
     "technique_notes": null
   },
+  "frames": [
+    {
+      "id": "frame-1",
+      "image": "images/CASE-0000-frame-1.png",
+      "plane": "axial",
+      "window": "soft_tissue",
+      "slice_level": null,
+      "notes": null
+    }
+  ],
   "findings": [
     {
       "id": "short-stable-slug",
@@ -36,7 +42,10 @@
       "enhancement": null,
       "morphology": [],
       "significance": null,
-      "certainty": null
+      "certainty": null,
+      "seen_on": [
+        "frame-1"
+      ]
     }
   ],
   "impression": "",

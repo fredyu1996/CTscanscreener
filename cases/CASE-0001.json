@@ -1,7 +1,6 @@
 {
   "case_id": "CASE-0001",
   "added": "2026-07-24",
-  "source_image": null,
   "patient": {
     "id": "PT-A",
     "age": null,
@@ -11,26 +10,42 @@
   "study": {
     "region": "chest",
     "study_date": null,
-    "plane": "axial",
     "contrast": "non_contrast",
-    "window": "soft_tissue",
     "slice_thickness_mm": null,
-    "slice_level": "Upper thorax, at or just above the level of the aortic arch (approximately T2-T4). Trachea round and midline; no arch contour resolved on this frame.",
-    "technique_notes": "Soft-tissue/mediastinal window only. No burned-in annotation, callipers, scale bar, or HU ROI, so no measurement on this frame is quantitatively anchored. Bulky soft tissue at both lateral field margins is consistent with shoulder girdle / proximal arms within the scan field."
+    "technique_notes": "Both frames share window, crop, table position, body contour, and non-contrast appearance, so they are read as two levels of one acquisition rather than two studies. No burned-in annotation, callipers, scale bar, or HU ROI on either frame, so nothing here is quantitatively anchored. Bulky soft tissue at both lateral field margins is consistent with shoulder girdle / proximal arms within the scan field."
   },
+  "frames": [
+    {
+      "id": "upper-thorax-soft-tissue",
+      "image": null,
+      "plane": "axial",
+      "window": "soft_tissue",
+      "slice_level": "Upper thorax, at or just above the aortic arch (approximately T2-T4). Trachea round and midline; no arch contour resolved.",
+      "notes": "First frame supplied. Pixels not attached — arrived as a conversation attachment rather than a file."
+    },
+    {
+      "id": "carina-soft-tissue",
+      "image": null,
+      "plane": "axial",
+      "window": "soft_tissue",
+      "slice_level": "Carina / proximal main bronchi, approximately T5-T6. Airway seen centrally as a transverse lucency at the bifurcation.",
+      "notes": "Second frame supplied, caudal to the first. Hilar vascular branching well seen bilaterally at this level. Pixels not attached."
+    }
+  ],
   "findings": [],
-  "impression": "Technically unremarkable axial frame of the upper thorax. Both lungs are well aerated and extend to the chest wall, with branching pulmonary vessels seen in cross-section and no consolidation, mass, or pleural fluid at this level. Trachea is midline, round, and non-deviated. Mediastinal soft tissue is homogeneous with no discrete mass or clearly enlarged node, though on a non-contrast study unopacified vessels and nodes are isodense and cannot be separated. Sternum, ribs, scapulae, and the thoracic vertebral body appear intact with no fracture, lytic, or sclerotic lesion evident. Chest wall soft tissues show mild left-greater-than-right bulk, most likely positional or habitus-related rather than a discrete finding. No discrete abnormality recorded for this frame.",
+  "impression": "Two axial levels of an unenhanced chest CT, upper thorax and carina, both technically unremarkable on soft-tissue window. Lungs are well aerated bilaterally and extend to the chest wall on both frames, with normal-calibre branching pulmonary vessels that become appropriately prominent at the hila on the carinal frame. No consolidation, mass, pleural fluid, or pneumothorax at either level. Airway is midline and non-deviated from trachea through to the bifurcation, with no visible intraluminal lesion or extrinsic compression. Mediastinal soft tissue is homogeneous with no discrete mass or clearly enlarged node, though on an unenhanced study nodes and unopacified vessels are isodense and cannot be separated; the subcarinal space in particular cannot be assessed. A rounded left paravertebral contour on the carinal frame is consistent with the descending thoracic aorta in normal position. Sternum, ribs, scapulae, and thoracic vertebrae appear intact with no fracture or lytic or sclerotic lesion. Chest wall soft tissues are mildly bulkier on the left than the right across both frames, most likely positional or habitus-related. No discrete abnormality recorded at either level.",
   "differential": [],
   "confidence": "moderate",
   "limitations": [
-    "Single axial frame — the rest of the volume is unassessed, and one level cannot characterise or exclude disease elsewhere in the chest.",
-    "Soft-tissue window only. Pulmonary nodules, ground-glass, emphysema, and interstitial disease are effectively not assessable without a lung window; this frame does not exclude them.",
+    "Two axial levels only. The rest of the volume is unassessed — most of both lungs, the upper abdomen, and the lower thorax were never seen.",
+    "Soft-tissue window on both frames. Pulmonary nodules, ground-glass, emphysema, and interstitial disease are effectively not assessable without a lung window; neither frame excludes them.",
     "Non-contrast. Mediastinal and hilar nodes cannot be distinguished from unopacified vessels, and no vascular assessment (embolism, dissection, aneurysm) is possible.",
-    "No DICOM metadata. Contrast phase, window, and slice level are inferred from appearance; slice thickness and study date are unknown.",
+    "No DICOM metadata. Contrast phase, window, and slice levels are inferred from appearance; slice thickness and study date are unknown.",
     "No burned-in callipers, scale bar, or HU ROI, so no size or attenuation value is recorded — any measurement here would be an estimate, not data.",
-    "A negative read at one level is not a normal study."
+    "The two frames are assumed to belong to one acquisition on visual grounds, not on metadata. If they are in fact separate studies, this record merges two studies and must be split.",
+    "A negative read at two levels is not a normal study."
   ],
   "compare_to": [],
-  "tags": ["baseline", "chest", "upper-thorax", "non-contrast", "soft-tissue-window", "no-discrete-finding"],
-  "notes": "First case in the base. Serves as a normal-appearing upper thoracic reference frame for the level. Image pixels not attached — the screenshot arrived as a conversation attachment rather than a file, so source_image is null. Drop the file into inbox/ to attach it and set source_image to images/CASE-0001.png."
+  "tags": ["baseline", "chest", "upper-thorax", "carina", "non-contrast", "soft-tissue-window", "no-discrete-finding"],
+  "notes": "First case in the base. Serves as a normal-appearing reference for the upper thorax and carinal levels. Image pixels not attached for either frame — both screenshots arrived as conversation attachments rather than files. Drop them into inbox/ to attach and set each frame's image to images/CASE-0001-<frame-id>.png."
 }

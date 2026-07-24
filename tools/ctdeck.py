@@ -314,13 +314,19 @@ def cmd_show(args: argparse.Namespace) -> int:
         print("  " + ", ".join(bits))
     if patient.get("clinical_context"):
         print(f"  context: {patient['clinical_context']}")
-    tech = ", ".join(str(study.get(k)) for k in ("plane", "contrast", "window") if study.get(k))
     print(f"  study:   {study.get('study_date') or 'date unknown'}"
-          f"{'  |  ' + tech if tech else ''}")
-    if study.get("slice_level"):
-        print(f"  level:   {study['slice_level']}")
-    if case.get("source_image"):
-        print(f"  image:   {case['source_image']}")
+          f"  |  {study.get('contrast') or 'contrast unknown'}")
+
+    frames = case.get("frames", [])
+    if frames:
+        print(f"\nFRAMES ({len(frames)})")
+        for fr in frames:
+            tech = ", ".join(str(fr.get(k)) for k in ("plane", "window") if fr.get(k))
+            print(f"  [{fr['id']}]{'  ' + tech if tech else ''}")
+            if fr.get("slice_level"):
+                print(f"      level: {fr['slice_level']}")
+            if fr.get("image"):
+                print(f"      image: {fr['image']}")
 
     findings = case.get("findings", [])
     print(f"\nFINDINGS ({len(findings)})")
@@ -371,21 +377,39 @@ def cmd_show(args: argparse.Namespace) -> int:
     return 0
 
 
-def cmd_compare(args: argparse.Namespace) -> int:
-    prior = load_case(args.prior)
-    current = load_case(args.current)
+def looks_like_one_study(prior: dict, current: dict) -> bool:
+    """True when two records appear to describe a single acquisition.
+
+    Same pseudonym on the same study date means these are almost certainly two
+    reads of one scan. Interval change across them is meaningless — findings
+    differ by which level each frame cuts through, not by anything biological.
+    """
+    p_patient = (prior.get("patient") or {}).get("id")
+    c_patient = (current.get("patient") or {}).get("id")
+    p_date = prior.get("study", {}).get("study_date")
+    c_date = current.get("study", {}).get("study_date")
+    return (p_patient is not None and p_patient == c_patient
+            and p_date is not None and p_date == c_date)
+
+
+def _frame_values(case: dict, key: str) -> set:
+    return {f.get(key) for f in case.get("frames", []) if f.get(key)}
+
+
+def comparison_warnings(prior: dict, current: dict) -> list[str]:
+    """Everything that makes a comparison between these two records unsafe."""
+    warnings: list[str] = []
+
+    if looks_like_one_study(prior, current):
+        warnings.append(
+            "SAME PATIENT AND SAME STUDY DATE — these look like two reads of one "
+            "acquisition, not two studies. Interval change is meaningless here; "
+            "findings will differ purely by which level each frame cuts through. "
+            "Frames of one acquisition belong in one case, under 'frames'."
+        )
 
     p_patient = (prior.get("patient") or {}).get("id")
     c_patient = (current.get("patient") or {}).get("id")
-
-    print(f"\nCOMPARISON  {prior['case_id']} (prior) -> {current['case_id']} (current)")
-    print("=" * 72)
-    print(f"  prior:   {prior['study'].get('study_date') or 'date unknown'}  "
-          f"{prior['study'].get('region')}  {prior['study'].get('contrast') or 'contrast unknown'}")
-    print(f"  current: {current['study'].get('study_date') or 'date unknown'}  "
-          f"{current['study'].get('region')}  {current['study'].get('contrast') or 'contrast unknown'}")
-
-    warnings = []
     if p_patient != c_patient:
         warnings.append(f"different patient ids ({p_patient} vs {c_patient}) — this is a "
                         f"pattern comparison, not an interval-change study")
@@ -393,8 +417,35 @@ def cmd_compare(args: argparse.Namespace) -> int:
         warnings.append("different body regions")
     if prior["study"].get("contrast") != current["study"].get("contrast"):
         warnings.append("different contrast phases — size and enhancement are not directly comparable")
-    if prior["study"].get("plane") != current["study"].get("plane"):
-        warnings.append("different imaging planes")
+
+    p_planes, c_planes = _frame_values(prior, "plane"), _frame_values(current, "plane")
+    if p_planes and c_planes and not (p_planes & c_planes):
+        warnings.append(f"no shared imaging plane ({'/'.join(sorted(p_planes))} vs "
+                        f"{'/'.join(sorted(c_planes))})")
+
+    p_windows, c_windows = _frame_values(prior, "window"), _frame_values(current, "window")
+    if p_windows and c_windows and not (p_windows & c_windows):
+        warnings.append(f"no shared window ({'/'.join(sorted(p_windows))} vs "
+                        f"{'/'.join(sorted(c_windows))}) — a finding invisible on one window "
+                        f"is not a finding that resolved")
+
+    return warnings
+
+
+def cmd_compare(args: argparse.Namespace) -> int:
+    prior = load_case(args.prior)
+    current = load_case(args.current)
+
+    print(f"\nCOMPARISON  {prior['case_id']} (prior) -> {current['case_id']} (current)")
+    print("=" * 72)
+    print(f"  prior:   {prior['study'].get('study_date') or 'date unknown'}  "
+          f"{prior['study'].get('region')}  {prior['study'].get('contrast') or 'contrast unknown'}"
+          f"  ({len(prior.get('frames', []))} frame(s))")
+    print(f"  current: {current['study'].get('study_date') or 'date unknown'}  "
+          f"{current['study'].get('region')}  {current['study'].get('contrast') or 'contrast unknown'}"
+          f"  ({len(current.get('frames', []))} frame(s))")
+
+    warnings = comparison_warnings(prior, current)
     for w in warnings:
         print(f"  ! {w}")
 
@@ -450,6 +501,10 @@ def cmd_compare(args: argparse.Namespace) -> int:
         print(f"  [{f['id']}] {f['organ']}"
               f"{' — ' + f['location'] if f.get('location') else ''}"
               f"{f'  was {size:g} mm' if size else ''}")
+    if resolved:
+        print("\n  'No longer identified' is not the same as resolved. Check whether the")
+        print("  current study's frames actually cut through the level and window where")
+        print("  each of these was originally seen.")
 
     label, rationale = overall_change(matched, resolved, new_findings)
     print("\n" + "=" * 72)
@@ -549,13 +604,22 @@ def cmd_validate(args: argparse.Namespace) -> int:
             errors.append(f"duplicate case_id, also in {seen_ids[case['case_id']].name}")
         seen_ids[case.get("case_id", path.stem)] = path
 
-        img = case.get("source_image")
-        if img and not (ROOT / img).exists():
-            errors.append(f"source_image not found: {img}")
+        frame_ids = [fr.get("id") for fr in case.get("frames", [])]
+        for dup in {i for i in frame_ids if frame_ids.count(i) > 1}:
+            errors.append(f"duplicate frame id {dup!r}")
+        for fr in case.get("frames", []):
+            img = fr.get("image")
+            if img and not (ROOT / img).exists():
+                errors.append(f"frame {fr.get('id')!r}: image not found: {img}")
 
         ids = [f.get("id") for f in case.get("findings", [])]
         for dup in {i for i in ids if ids.count(i) > 1}:
             errors.append(f"duplicate finding id {dup!r}")
+        for f in case.get("findings", []):
+            for ref in f.get("seen_on", []):
+                if ref not in frame_ids:
+                    errors.append(f"finding {f.get('id')!r}: seen_on references "
+                                  f"unknown frame {ref!r}")
 
         for ref in case.get("compare_to", []):
             if not (CASES_DIR / f"{ref}.json").exists():
@@ -584,7 +648,16 @@ def cmd_index(args: argparse.Namespace) -> int:
             "study_date": case["study"].get("study_date"),
             "region": case["study"].get("region"),
             "contrast": case["study"].get("contrast"),
-            "source_image": case.get("source_image"),
+            "frames": [
+                {
+                    "id": fr["id"],
+                    "image": fr.get("image"),
+                    "plane": fr.get("plane"),
+                    "window": fr.get("window"),
+                    "slice_level": fr.get("slice_level"),
+                }
+                for fr in case.get("frames", [])
+            ],
             "impression": case["impression"],
             "confidence": case["confidence"],
             "tags": case.get("tags", []),
@@ -621,7 +694,7 @@ def cmd_index(args: argparse.Namespace) -> int:
         "by_patient": {k: sorted(set(v)) for k, v in sorted(by_patient.items())},
     }
     CASES_DIR.mkdir(parents=True, exist_ok=True)
-    INDEX_PATH.write_text(json.dumps(index, indent=2) + "\n")
+    INDEX_PATH.write_text(json.dumps(index, indent=2, ensure_ascii=False) + "\n")
     print(f"Indexed {len(cases)} case(s) -> {rel(INDEX_PATH)}")
     return 0
 
@@ -641,10 +714,18 @@ def cmd_new(args: argparse.Namespace) -> int:
         template["study"]["region"] = args.region
     if args.patient:
         template.setdefault("patient", {})["id"] = args.patient
-    template["source_image"] = args.image or None
+    if args.image:
+        template["frames"] = [{
+            "id": "frame-1",
+            "image": args.image,
+            "plane": "axial",
+            "window": None,
+            "slice_level": None,
+            "notes": None,
+        }]
 
     CASES_DIR.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(template, indent=2) + "\n")
+    path.write_text(json.dumps(template, indent=2, ensure_ascii=False) + "\n")
     print(f"Created {rel(path)} — fill in findings and impression, then run:")
     print(f"  python3 tools/ctdeck.py validate && python3 tools/ctdeck.py index")
     return 0
@@ -684,9 +765,21 @@ tr:last-child td { border-bottom:none; }
   border:1px solid var(--line); color:var(--muted); margin-right:.3rem; }
 .pill.critical { color:var(--warn); border-color:var(--warn); }
 .limits { font-size:.8rem; color:var(--muted); margin-top:.9rem; }
-img { max-width:100%; border-radius:6px; border:1px solid var(--line); margin-bottom:1rem; }
+img { max-width:100%; border-radius:6px; border:1px solid var(--line); display:block; }
+.frames { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:.75rem; margin-bottom:1rem; }
+figure { margin:0; }
+figcaption { font-size:.72rem; color:var(--muted); margin-top:.3rem; }
 .empty { color:var(--muted); font-style:italic; }
 """
+
+
+def _deck_img_src(image: str, out: str) -> str:
+    """Path to an image from the rendered deck's own location."""
+    try:
+        return str((ROOT / image).resolve().relative_to(Path(out).resolve().parent))
+    except ValueError:
+        return str((ROOT / image).resolve())
 
 
 def cmd_deck(args: argparse.Namespace) -> int:
@@ -708,9 +801,12 @@ def cmd_deck(args: argparse.Namespace) -> int:
         study = case["study"]
         patient = case.get("patient") or {}
         meta = [study.get("region", "?")]
-        for key in ("study_date", "plane", "contrast", "window"):
+        for key in ("study_date", "contrast"):
             if study.get(key):
                 meta.append(str(study[key]))
+        frame_count = len(case.get("frames", []))
+        if frame_count:
+            meta.append(f"{frame_count} frame(s)")
         if patient.get("id"):
             meta.insert(0, f"patient {patient['id']}")
 
@@ -718,15 +814,24 @@ def cmd_deck(args: argparse.Namespace) -> int:
         parts.append(f"<h2>{e(case['case_id'])}</h2>")
         parts.append(f"<div class='meta'>{e(' · '.join(meta))}</div>")
 
-        img = case.get("source_image")
-        if img and (ROOT / img).exists():
-            rel = Path(img)
-            if args.out:
-                try:
-                    rel = Path(img).resolve().relative_to(Path(args.out).resolve().parent)
-                except ValueError:
-                    rel = (ROOT / img).resolve()
-            parts.append(f"<img src='{e(str(rel))}' alt='{e(case['case_id'])} source frame'>")
+        frames = case.get("frames", [])
+        shown = [fr for fr in frames if fr.get("image") and (ROOT / fr["image"]).exists()]
+        if shown:
+            parts.append("<div class='frames'>")
+            for fr in shown:
+                src = _deck_img_src(fr["image"], args.out)
+                caption = " · ".join(str(fr[k]) for k in ("plane", "window", "slice_level")
+                                     if fr.get(k))
+                parts.append(
+                    f"<figure><img src='{e(src)}' alt='{e(case['case_id'])} frame "
+                    f"{e(fr['id'])}'><figcaption>{e(fr['id'])}"
+                    f"{' — ' + e(caption) if caption else ''}</figcaption></figure>"
+                )
+            parts.append("</div>")
+        elif frames:
+            levels = "; ".join(str(fr.get("slice_level") or fr["id"]) for fr in frames)
+            parts.append(f"<p class='empty'>{len(frames)} frame(s) described, pixels not "
+                         f"attached — {e(levels)}</p>")
 
         parts.append(f"<p class='impression'>{e(case['impression'])}</p>")
 
@@ -828,4 +933,10 @@ def main(argv: Iterable[str] | None = None) -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except BrokenPipeError:
+        # Downstream closed the pipe (`| head`). Silence the interpreter's
+        # shutdown warning by pointing stdout at devnull before exiting.
+        os.dup2(os.open(os.devnull, os.O_WRONLY), sys.stdout.fileno())
+        sys.exit(0)

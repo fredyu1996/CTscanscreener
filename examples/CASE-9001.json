@@ -1,7 +1,6 @@
 {
   "case_id": "CASE-9001",
   "added": "2026-07-24",
-  "source_image": null,
   "patient": {
     "id": "PT-DEMO",
     "age": 58,
@@ -11,13 +10,20 @@
   "study": {
     "region": "abdomen",
     "study_date": "2026-01-12",
-    "plane": "axial",
     "contrast": "portal_venous",
-    "window": "soft_tissue",
     "slice_thickness_mm": 5,
-    "slice_level": "porta hepatis",
     "technique_notes": "Fabricated record used to demonstrate the schema and the compare command."
   },
+  "frames": [
+    {
+      "id": "portal-venous-axial",
+      "image": null,
+      "plane": "axial",
+      "window": "soft_tissue",
+      "slice_level": "porta hepatis",
+      "notes": null
+    }
+  ],
   "findings": [
     {
       "id": "liver-seg7-lesion",
@@ -25,7 +31,11 @@
       "laterality": "right",
       "location": "segment VII",
       "description": "Rounded hypodense lesion with mildly lobulated margins and a thin peripheral rim of enhancement.",
-      "size_mm": [22, 19, 18],
+      "size_mm": [
+        22,
+        19,
+        18
+      ],
       "attenuation_hu": {
         "value": 38,
         "min": null,
@@ -34,9 +44,15 @@
       },
       "margins": "lobulated",
       "enhancement": "rim",
-      "morphology": ["solid", "rim-enhancing"],
+      "morphology": [
+        "solid",
+        "rim-enhancing"
+      ],
       "significance": "indeterminate",
-      "certainty": "definite"
+      "certainty": "definite",
+      "seen_on": [
+        "portal-venous-axial"
+      ]
     },
     {
       "id": "liver-seg2-cyst",
@@ -44,7 +60,9 @@
       "laterality": "left",
       "location": "segment II",
       "description": "Well-defined water-density lesion with imperceptible wall and no internal complexity.",
-      "size_mm": [9],
+      "size_mm": [
+        9
+      ],
       "attenuation_hu": {
         "value": 6,
         "min": null,
@@ -53,23 +71,39 @@
       },
       "margins": "well_defined",
       "enhancement": "none",
-      "morphology": ["cystic"],
+      "morphology": [
+        "cystic"
+      ],
       "significance": "benign",
-      "certainty": "probable"
+      "certainty": "probable",
+      "seen_on": [
+        "portal-venous-axial"
+      ]
     }
   ],
   "impression": "Two hepatic lesions: an indeterminate rim-enhancing segment VII lesion and a small simple-appearing segment II cyst.",
   "differential": [
     {
       "entity": "Metastasis",
-      "supporting": ["Rim enhancement", "Lobulated margins", "Soft-tissue attenuation"],
-      "against": ["Solitary", "No known primary given"],
+      "supporting": [
+        "Rim enhancement",
+        "Lobulated margins",
+        "Soft-tissue attenuation"
+      ],
+      "against": [
+        "Solitary",
+        "No known primary given"
+      ],
       "likelihood": "moderate"
     },
     {
       "entity": "Abscess",
-      "supporting": ["Rim enhancement"],
-      "against": ["No clinical infective context supplied"],
+      "supporting": [
+        "Rim enhancement"
+      ],
+      "against": [
+        "No clinical infective context supplied"
+      ],
       "likelihood": "low"
     }
   ],
@@ -79,6 +113,11 @@
     "Single frame, single contrast phase; enhancement pattern cannot be fully characterised."
   ],
   "compare_to": [],
-  "tags": ["example", "synthetic", "baseline", "hepatic-lesion"],
+  "tags": [
+    "example",
+    "synthetic",
+    "baseline",
+    "hepatic-lesion"
+  ],
   "notes": "Demonstration data. Pair with CASE-9002 to see the compare output."
 }

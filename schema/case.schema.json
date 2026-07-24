@@ -17,10 +17,6 @@
       "format": "date",
       "description": "Date this record entered the base (YYYY-MM-DD)."
     },
-    "source_image": {
-      "type": ["string", "null"],
-      "description": "Repo-relative path to the screenshot this record describes."
-    },
     "patient": {
       "type": "object",
       "additionalProperties": false,
@@ -52,10 +48,6 @@
           ]
         },
         "study_date": { "type": ["string", "null"], "format": "date" },
-        "plane": {
-          "type": ["string", "null"],
-          "enum": ["axial", "coronal", "sagittal", "oblique", "3d_reconstruction", "scout", null]
-        },
         "contrast": {
           "type": ["string", "null"],
           "enum": [
@@ -63,16 +55,37 @@
             "excretory", "cta", "ctv", "oral_only", "unknown", null
           ]
         },
-        "window": {
-          "type": ["string", "null"],
-          "enum": ["soft_tissue", "lung", "bone", "brain", "liver", "mediastinal", "stroke", "unknown", null]
-        },
         "slice_thickness_mm": { "type": ["number", "null"], "exclusiveMinimum": 0 },
-        "slice_level": {
-          "type": ["string", "null"],
-          "description": "Anatomic level of the frame, e.g. 'carina', 'L2 vertebral body'."
-        },
         "technique_notes": { "type": ["string", "null"] }
+      }
+    },
+    "frames": {
+      "type": "array",
+      "description": "The screenshots this record was read from. One acquisition can supply many frames at different levels and windows — they all belong to this one case, never to separate cases.",
+      "items": {
+        "type": "object",
+        "required": ["id"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Short slug unique within the case, e.g. 'carina-soft-tissue'."
+          },
+          "image": { "type": ["string", "null"], "description": "Repo-relative path to the screenshot." },
+          "plane": {
+            "type": ["string", "null"],
+            "enum": ["axial", "coronal", "sagittal", "oblique", "3d_reconstruction", "scout", null]
+          },
+          "window": {
+            "type": ["string", "null"],
+            "enum": ["soft_tissue", "lung", "bone", "brain", "liver", "mediastinal", "stroke", "unknown", null]
+          },
+          "slice_level": {
+            "type": ["string", "null"],
+            "description": "Anatomic level of this frame, e.g. 'carina', 'L2 vertebral body'."
+          },
+          "notes": { "type": ["string", "null"] }
+        }
       }
     },
     "findings": {
@@ -191,6 +204,11 @@
         "certainty": {
           "type": ["string", "null"],
           "enum": ["definite", "probable", "possible", "questionable", null]
+        },
+        "seen_on": {
+          "type": "array",
+          "description": "Frame ids this finding was actually visible on. Absence from a frame that does not cut through the finding means nothing.",
+          "items": { "type": "string" }
         }
       }
     }
