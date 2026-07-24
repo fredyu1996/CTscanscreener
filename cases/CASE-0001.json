@@ -1,0 +1,36 @@
+{
+  "case_id": "CASE-0001",
+  "added": "2026-07-24",
+  "source_image": null,
+  "patient": {
+    "id": "PT-A",
+    "age": null,
+    "sex": null,
+    "clinical_context": null
+  },
+  "study": {
+    "region": "chest",
+    "study_date": null,
+    "plane": "axial",
+    "contrast": "non_contrast",
+    "window": "soft_tissue",
+    "slice_thickness_mm": null,
+    "slice_level": "Upper thorax, at or just above the level of the aortic arch (approximately T2-T4). Trachea round and midline; no arch contour resolved on this frame.",
+    "technique_notes": "Soft-tissue/mediastinal window only. No burned-in annotation, callipers, scale bar, or HU ROI, so no measurement on this frame is quantitatively anchored. Bulky soft tissue at both lateral field margins is consistent with shoulder girdle / proximal arms within the scan field."
+  },
+  "findings": [],
+  "impression": "Technically unremarkable axial frame of the upper thorax. Both lungs are well aerated and extend to the chest wall, with branching pulmonary vessels seen in cross-section and no consolidation, mass, or pleural fluid at this level. Trachea is midline, round, and non-deviated. Mediastinal soft tissue is homogeneous with no discrete mass or clearly enlarged node, though on a non-contrast study unopacified vessels and nodes are isodense and cannot be separated. Sternum, ribs, scapulae, and the thoracic vertebral body appear intact with no fracture, lytic, or sclerotic lesion evident. Chest wall soft tissues show mild left-greater-than-right bulk, most likely positional or habitus-related rather than a discrete finding. No discrete abnormality recorded for this frame.",
+  "differential": [],
+  "confidence": "moderate",
+  "limitations": [
+    "Single axial frame — the rest of the volume is unassessed, and one level cannot characterise or exclude disease elsewhere in the chest.",
+    "Soft-tissue window only. Pulmonary nodules, ground-glass, emphysema, and interstitial disease are effectively not assessable without a lung window; this frame does not exclude them.",
+    "Non-contrast. Mediastinal and hilar nodes cannot be distinguished from unopacified vessels, and no vascular assessment (embolism, dissection, aneurysm) is possible.",
+    "No DICOM metadata. Contrast phase, window, and slice level are inferred from appearance; slice thickness and study date are unknown.",
+    "No burned-in callipers, scale bar, or HU ROI, so no size or attenuation value is recorded — any measurement here would be an estimate, not data.",
+    "A negative read at one level is not a normal study."
+  ],
+  "compare_to": [],
+  "tags": ["baseline", "chest", "upper-thorax", "non-contrast", "soft-tissue-window", "no-discrete-finding"],
+  "notes": "First case in the base. Serves as a normal-appearing upper thoracic reference frame for the level. Image pixels not attached — the screenshot arrived as a conversation attachment rather than a file, so source_image is null. Drop the file into inbox/ to attach it and set source_image to images/CASE-0001.png."
+}

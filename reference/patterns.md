@@ -11,6 +11,18 @@ Entries start empty of case links; they fill in as the base grows.
 
 ## Chest
 
+### Normal upper thorax, soft-tissue window
+Reference appearance at roughly T2–T4: trachea round and midline, manubrium anteriorly,
+scapulae posterolaterally, vertebral body and spinous process posteriorly, both lungs
+uniformly black with white dots and short branches where pulmonary vessels cross the
+slice.
+**Discriminators** — on this window the lungs are a black background, so anything short
+of a large mass, consolidation, or effusion will not show. Absence of a finding here is
+weak evidence; the same slice on a lung window is a different examination. On
+non-contrast, mediastinal fat is dark and everything else in the mediastinum — nodes,
+vessels, thymic remnant — is one undifferentiated grey.
+**Cases:** CASE-0001
+
 ### Solid pulmonary nodule
 Round soft-tissue density within aerated lung. What matters for the record: size
 (longest axis), margins (smooth / lobulated / spiculated), presence of calcification and

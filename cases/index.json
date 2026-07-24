@@ -1,0 +1,37 @@
+{
+  "generated": "2026-07-24",
+  "case_count": 1,
+  "cases": [
+    {
+      "case_id": "CASE-0001",
+      "added": "2026-07-24",
+      "patient_id": "PT-A",
+      "study_date": null,
+      "region": "chest",
+      "contrast": "non_contrast",
+      "source_image": null,
+      "impression": "Technically unremarkable axial frame of the upper thorax. Both lungs are well aerated and extend to the chest wall, with branching pulmonary vessels seen in cross-section and no consolidation, mass, or pleural fluid at this level. Trachea is midline, round, and non-deviated. Mediastinal soft tissue is homogeneous with no discrete mass or clearly enlarged node, though on a non-contrast study unopacified vessels and nodes are isodense and cannot be separated. Sternum, ribs, scapulae, and the thoracic vertebral body appear intact with no fracture, lytic, or sclerotic lesion evident. Chest wall soft tissues show mild left-greater-than-right bulk, most likely positional or habitus-related rather than a discrete finding. No discrete abnormality recorded for this frame.",
+      "confidence": "moderate",
+      "tags": [
+        "baseline",
+        "chest",
+        "upper-thorax",
+        "non-contrast",
+        "soft-tissue-window",
+        "no-discrete-finding"
+      ],
+      "findings": []
+    }
+  ],
+  "by_region": {
+    "chest": [
+      "CASE-0001"
+    ]
+  },
+  "by_organ": {},
+  "by_patient": {
+    "PT-A": [
+      "CASE-0001"
+    ]
+  }
+}
