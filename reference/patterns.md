@@ -67,10 +67,32 @@ any component. Bilateral, symmetric, perihilar, with septal lines is edema until
 otherwise. Asymmetry in *extent* does not overturn it — CASE-0001 was right greater than
 left throughout and was still edema.
 
+**The same study in both windows (CASE-0001).** This is the entry to reread before
+calling any diffuse lung process from a soft-tissue frame.
+
+| Feature | Soft-tissue window | Lung window |
+|---|---|---|
+| Ground-glass | Invisible. Lung is a black background either way. | **Lung fields grey instead of black** — the single most legible sign |
+| Consolidation | Vague grey merging with mediastinum | Dense white with dark air bronchograms clearly inside it |
+| Peribronchial cuffing | Round/tubular lucencies "inside opacity" → reads as dilated airways | Thickened walls with **normal-calibre lumens** — plainly cuffing, not dilatation |
+| Septal thickening | Coarse reticular lines, indistinguishable from fibrosis | Fine septal lines resolvable |
+| Perihilar + dependent gradient | Not appreciable | Obvious, and it is what names the pattern |
+
+The decisive one is row three. The soft-tissue frame shows air inside opacity and stops
+there; the lung window shows the wall and the lumen separately, and the bronchiectasis
+hypothesis dies instantly. **A diffuse lung process read only on soft-tissue window is a
+guess, and should be recorded as one.**
+
+Caveat on this table: the lung-window frame was supplied after the report was known, so
+it documents the appearance rather than proving a blind read would have succeeded.
+
 ### Nodules on a soft-tissue window
 A 9 mm peripheral nodule is close to invisible on soft-tissue window. Nodules are a
 lung-window finding.
-**Discriminators** — none available. That is the entry.
+**Discriminators** — none available. That is the entry. Note also that a lung window at
+the *wrong level* does not help: CASE-0001's lung-window frame is lower thoracic and the
+reported nodules are upper lobe predominant, so they are absent from every frame in the
+record. Window and level are separate requirements.
 **Cases:** CASE-0001 (bilateral peripheral nodules with slight upper lobe predominance,
 9 mm LUL and 9 mm RUL, missed entirely on six soft-tissue frames)
 

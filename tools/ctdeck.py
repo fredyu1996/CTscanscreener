@@ -682,11 +682,19 @@ def cmd_validate(args: argparse.Namespace) -> int:
         ids = [f.get("id") for f in case.get("findings", [])]
         for dup in {i for i in ids if ids.count(i) > 1}:
             errors.append(f"duplicate finding id {dup!r}")
+        post_report = {fr.get("id") for fr in case.get("frames", [])
+                       if fr.get("read_after_report")}
         for f in case.get("findings", []):
             for ref in f.get("seen_on", []):
                 if ref not in frame_ids:
                     errors.append(f"finding {f.get('id')!r}: seen_on references "
                                   f"unknown frame {ref!r}")
+            # A finding only ever visible on a frame supplied after the report was
+            # known cannot be evidence that the blind read got it right.
+            seen = set(f.get("seen_on", []))
+            if (f.get("concordance") == "concordant" and seen and seen <= post_report):
+                errors.append(f"finding {f.get('id')!r}: scored concordant but seen only on "
+                              f"frame(s) supplied after the official report")
 
         for ref in case.get("compare_to", []):
             if not (CASES_DIR / f"{ref}.json").exists():

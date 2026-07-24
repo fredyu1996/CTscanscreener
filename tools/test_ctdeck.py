@@ -316,6 +316,11 @@ class TestOfficialReport(unittest.TestCase):
                              "source": "official_report", "concordance": "missed"}]
         self.assertEqual(ctdeck.validate_against(case, self.schema, self.schema), [])
 
+    def test_read_after_report_flag_accepted(self):
+        case = self._case()
+        case["frames"] = [{"id": "lw", "window": "lung", "read_after_report": True}]
+        self.assertEqual(ctdeck.validate_against(case, self.schema, self.schema), [])
+
     def test_report_sourced_finding_may_have_empty_seen_on(self):
         # A finding from the report can describe a slice no frame shows.
         case = self._case()

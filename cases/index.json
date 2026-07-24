@@ -51,6 +51,13 @@
           "plane": "axial",
           "window": "soft_tissue",
           "slice_level": "Lung bases approaching the diaphragm, approximately T9-T10. Lung cross-sections reducing; central soft tissue is heart with diaphragm and upper abdominal contents beginning to enter the field."
+        },
+        {
+          "id": "lower-thorax-lung-window",
+          "image": null,
+          "plane": "axial",
+          "window": "lung",
+          "slice_level": "Lower thorax, approximately T7-T9, comparable to the heart-level and lung-base soft-tissue frames."
         }
       ],
       "impression": "Pulmonary edema — diffuse interlobular septal thickening, peribronchial wall thickening, and perihilar ground-glass and consolidation — with a second, separate process superimposed: multiple bilateral peripheral nodules with slight upper lobe predominance, explicitly not typical for edema, including a 9 mm left upper lobe nodule and a 9 mm right upper lobe nodule. Suspicion of a ground-glass halo around several of the nodules, possibly exaggerated by motion artefact. No cavitary lesion. This impression follows the official report, which supersedes the screenshot-derived read recorded across the six supplied frames. That read identified the septal thickening, the peribronchial changes, and the perihilar opacity but attributed all three to airway disease — bronchiectasis, aspiration, and bronchiolitis — and did not reach edema. It also called the three upper-thorax frames unremarkable and missed the nodules entirely. See official_report.read_delta for the full account of what held up and what did not.",
@@ -58,17 +65,19 @@
       "has_official_report": true,
       "tags": [
         "chest",
-        "non-contrast",
-        "soft-tissue-window",
-        "multi-level",
-        "pulmonary-edema",
-        "septal-thickening",
-        "peribronchial-thickening",
-        "pulmonary-nodules",
         "halo-sign",
+        "lung-window",
+        "multi-level",
+        "non-contrast",
         "official-report",
+        "peribronchial-thickening",
+        "pulmonary-edema",
+        "pulmonary-nodules",
         "read-corrected",
-        "teaching-case"
+        "septal-thickening",
+        "soft-tissue-window",
+        "teaching-case",
+        "two-window-case"
       ],
       "findings": [
         {

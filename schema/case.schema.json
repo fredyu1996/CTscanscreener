@@ -84,6 +84,10 @@
             "type": ["string", "null"],
             "description": "Anatomic level of this frame, e.g. 'carina', 'L2 vertebral body'."
           },
+          "read_after_report": {
+            "type": ["boolean", "null"],
+            "description": "True if this frame was supplied after the official report was known. Such a frame documents what the reported findings look like; it cannot test the screenshot read, and findings first seen on it must not be scored as concordant."
+          },
           "notes": { "type": ["string", "null"] }
         }
       }
