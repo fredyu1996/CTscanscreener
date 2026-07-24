@@ -11,17 +11,26 @@ Entries start empty of case links; they fill in as the base grows.
 
 ## Chest
 
-### Normal upper thorax, soft-tissue window
-Reference appearance at roughly T2–T4: trachea round and midline, manubrium anteriorly,
-scapulae posterolaterally, vertebral body and spinous process posteriorly, both lungs
-uniformly black with white dots and short branches where pulmonary vessels cross the
-slice.
-**Discriminators** — on this window the lungs are a black background, so anything short
-of a large mass, consolidation, or effusion will not show. Absence of a finding here is
-weak evidence; the same slice on a lung window is a different examination. On
-non-contrast, mediastinal fat is dark and everything else in the mediastinum — nodes,
-vessels, thymic remnant — is one undifferentiated grey.
-**Cases:** CASE-0001
+### Normal thorax by level, soft-tissue window
+Reference appearances descending through the chest on an unenhanced study:
+
+- **T2–T4, upper thorax** — trachea round and midline, manubrium anteriorly, scapulae
+  posterolaterally, lungs uniformly black with sparse white dots where vessels cross.
+- **T5–T6, carina** — airway a transverse lucency at the bifurcation; hilar vessels
+  becoming conspicuous; descending aorta appearing as a rounded left paravertebral
+  contour.
+- **T6–T7, main bronchi** — both bronchi as paired lucencies; largest lung
+  cross-section; vessels radiating prominently from both hila; broad central grey
+  from heart and great vessels.
+
+**Discriminators** — vascular prominence increases as you descend toward the hila, and
+that gradient is anatomy, not disease. Reading coarse hilar markings as interstitial
+change is the trap at these levels. On this window the lungs are a black background, so
+anything short of a large mass, consolidation, or effusion will not show; absence of a
+finding here is weak evidence, and the same slice on a lung window is a different
+examination. On non-contrast, mediastinal fat is dark and everything else in the
+mediastinum — nodes, vessels, thymic remnant — is one undifferentiated grey.
+**Cases:** CASE-0001 (all three levels)
 
 ### Solid pulmonary nodule
 Round soft-tissue density within aerated lung. What matters for the record: size

@@ -12,7 +12,7 @@
     "study_date": null,
     "contrast": "non_contrast",
     "slice_thickness_mm": null,
-    "technique_notes": "Two levels of one acquisition, confirmed by the user. No burned-in annotation, callipers, scale bar, or HU ROI on either frame, so nothing here is quantitatively anchored. Bulky soft tissue at both lateral field margins is consistent with shoulder girdle / proximal arms within the scan field."
+    "technique_notes": "Three levels of one acquisition, confirmed by the user. No burned-in annotation, callipers, scale bar, or HU ROI on any frame, so nothing here is quantitatively anchored. Bulky soft tissue at both lateral field margins is consistent with shoulder girdle / proximal arms within the scan field."
   },
   "frames": [
     {
@@ -30,20 +30,28 @@
       "window": "soft_tissue",
       "slice_level": "Carina / proximal main bronchi, approximately T5-T6. Airway seen centrally as a transverse lucency at the bifurcation.",
       "notes": "Second frame supplied, caudal to the first. Hilar vascular branching well seen bilaterally at this level. Pixels not attached."
+    },
+    {
+      "id": "main-bronchi-soft-tissue",
+      "image": null,
+      "plane": "axial",
+      "window": "soft_tissue",
+      "slice_level": "Below the carina, at the main bronchi / bronchus intermedius, approximately T6-T7. Both bronchi visible as paired lucencies within the mediastinum.",
+      "notes": "Third frame supplied, caudal to the carinal frame. Largest lung cross-section of the three, with pulmonary vessels radiating prominently from both hila as expected at this level. Broad homogeneous central mediastinal soft tissue corresponds to heart and great vessels, undifferentiated because the study is unenhanced. Pixels not attached."
     }
   ],
   "findings": [],
-  "impression": "Two axial levels of an unenhanced chest CT, upper thorax and carina, both technically unremarkable on soft-tissue window. Lungs are well aerated bilaterally and extend to the chest wall on both frames, with normal-calibre branching pulmonary vessels that become appropriately prominent at the hila on the carinal frame. No consolidation, mass, pleural fluid, or pneumothorax at either level. Airway is midline and non-deviated from trachea through to the bifurcation, with no visible intraluminal lesion or extrinsic compression. Mediastinal soft tissue is homogeneous with no discrete mass or clearly enlarged node, though on an unenhanced study nodes and unopacified vessels are isodense and cannot be separated; the subcarinal space in particular cannot be assessed. A rounded left paravertebral contour on the carinal frame is consistent with the descending thoracic aorta in normal position. Sternum, ribs, scapulae, and thoracic vertebrae appear intact with no fracture or lytic or sclerotic lesion. Chest wall soft tissues are mildly bulkier on the left than the right across both frames, most likely positional or habitus-related. No discrete abnormality recorded at either level.",
+  "impression": "Three contiguous axial levels of an unenhanced chest CT — upper thorax, carina, and main bronchi — all technically unremarkable on soft-tissue window. Lungs are well aerated bilaterally and extend to the chest wall on every frame, with branching pulmonary vessels that become progressively more prominent at the hila on the two lower frames, in keeping with normal vasculature at those levels rather than with parenchymal disease. No consolidation, mass, pleural fluid, or pneumothorax at any level. The airway is midline and non-deviated from trachea through the bifurcation to both main bronchi, which are patent and normally positioned with no visible intraluminal lesion or extrinsic compression. Mediastinal soft tissue is homogeneous with no discrete mass or clearly enlarged node; on the lowest frame the broad central soft-tissue density corresponds to heart and great vessels, undifferentiated because the study is unenhanced. On an unenhanced study nodes and unopacified vessels are isodense and cannot be separated, so the subcarinal and hilar nodal stations in particular are not assessable. A rounded left paravertebral contour is consistent with the descending thoracic aorta in normal position on the lower frames. Sternum, ribs, scapulae, and thoracic vertebrae appear intact with no fracture or lytic or sclerotic lesion. Chest wall soft tissues are mildly bulkier on the left than the right across all three frames, consistently enough to read as habitus or positioning rather than a focal abnormality. No discrete abnormality recorded at any of the three levels.",
   "differential": [],
   "confidence": "moderate",
   "limitations": [
-    "Two axial levels only. The rest of the volume is unassessed — most of both lungs, the upper abdomen, and the lower thorax were never seen.",
-    "Soft-tissue window on both frames. Pulmonary nodules, ground-glass, emphysema, and interstitial disease are effectively not assessable without a lung window; neither frame excludes them.",
+    "Three axial levels only, all within the upper and mid thorax. The lung bases, costophrenic angles, and upper abdomen were never seen — a pleural effusion or basal consolidation would sit below every frame supplied.",
+    "Soft-tissue window on all three frames. Pulmonary nodules, ground-glass, emphysema, and interstitial disease are effectively not assessable without a lung window; none of these frames excludes them. The prominent vascular markings at the hila are a window effect plus normal anatomy, not an assessment of the parenchyma.",
     "Non-contrast. Mediastinal and hilar nodes cannot be distinguished from unopacified vessels, and no vascular assessment (embolism, dissection, aneurysm) is possible.",
     "No DICOM metadata. Contrast phase, window, and slice levels are inferred from appearance; slice thickness and study date are unknown.",
     "No burned-in callipers, scale bar, or HU ROI, so no size or attenuation value is recorded — any measurement here would be an estimate, not data.",
     "Single acquisition, confirmed by the user. There is no prior and no follow-up in the base, so nothing here establishes whether any of this is new, stable, or changing.",
-    "A negative read at two levels is not a normal study."
+    "A negative read at three levels is not a normal study. These frames sample a few centimetres of a volume that spans the whole chest."
   ],
   "compare_to": [],
   "tags": [
@@ -51,9 +59,11 @@
     "chest",
     "upper-thorax",
     "carina",
+    "main-bronchi",
     "non-contrast",
     "soft-tissue-window",
-    "no-discrete-finding"
+    "no-discrete-finding",
+    "multi-level"
   ],
-  "notes": "First case in the base. Serves as a normal-appearing reference for the upper thorax and carinal levels. Image pixels not attached for either frame — both screenshots arrived as conversation attachments rather than files. Drop them into inbox/ to attach and set each frame's image to images/CASE-0001-<frame-id>.png."
+  "notes": "First case in the base. Serves as a normal-appearing reference for the upper thorax, carinal, and main-bronchi levels. Image pixels not attached for any frame — all three screenshots arrived as conversation attachments rather than files. Drop them into inbox/ to attach and set each frame's image to images/CASE-0001-<frame-id>.png."
 }
